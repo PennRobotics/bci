@@ -66,4 +66,6 @@ data_3_train = session_3_train.data.getvalues(1 : nr_3_train, 1 : nc_3_train);
 data_3_glove = session_3_glove.data.getvalues(1 : nr_3_glove, 1 : nc_3_glove);
 data_3_test  = session_3_test .data.getvalues(1 : nr_3_test , 1 : nc_3_test );
 
+return
+
 clear session* subject* nr* nc* username password_bin
