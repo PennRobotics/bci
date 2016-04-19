@@ -30,3 +30,50 @@ sub_1_test_part_MA = MovingAverage(sub_1_test_part);
 sub_2_test_part_MA = MovingAverage(sub_2_test_part);
 sub_3_test_part_MA = MovingAverage(sub_3_test_part);
 
+
+win_size = 100;
+overlap = 50;
+Fs = 200;
+F = 1000;
+
+max_chan = 16
+
+outputA = zeros(max_chan, 50000);
+outputB = zeros(max_chan, 50000);
+outputC = zeros(max_chan, 50000);
+outputD = zeros(max_chan, 50000);
+outputE = zeros(max_chan, 50000);
+
+% This is used to make frequency bands relatively same-sized
+reduce = (linspace(1e-4, 1, 101)' .^ 2) ./ linspace(1500,1,101)';
+
+for chan = 1 : max_chan
+
+  spectrogram(sub_1_train_part(:,chan), win_size, overlap, Fs, F);
+  [S, F, T, P, Fc, Tc] = spectrogram(sub_1_train_part(:,chan), win_size, overlap, Fs, F);
+
+  for i = 1 : (50000 - 50)
+    if mod(i, 50) == 1
+      idx = ceil(i / 50);
+      % Constant also used to make frequency bands similar magnitude
+      freq_5_to_15    =  3.0 * mean(P( 2: 4, idx) .* reduce( 2: 4));
+      freq_20_to_25   =  5.5 * mean(P( 5: 6, idx) .* reduce( 5: 6));
+      freq_75_to_115  = 20.0 * mean(P(16:24, idx) .* reduce(16:24));
+      freq_125_to_160 = 29.5 * mean(P(26:33, idx) .* reduce(26:33));
+      freq_160_to_175 = 34.5 * mean(P(33:36, idx) .* reduce(33:36));
+    end
+    outputA(chan, i) = freq_5_to_15;
+    outputB(chan, i) = freq_20_to_25;
+    outputC(chan, i) = freq_75_to_115;
+    outputD(chan, i) = freq_125_to_160;
+    outputE(chan, i) = freq_160_to_175;
+  end
+  for i = (50000 - 49) : 50000
+    outputA(chan, i) = freq_5_to_15;
+    outputB(chan, i) = freq_20_to_25;
+    outputC(chan, i) = freq_75_to_115;
+    outputD(chan, i) = freq_125_to_160;
+    outputE(chan, i) = freq_160_to_175;
+  end
+
+end
