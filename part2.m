@@ -62,12 +62,12 @@ sub_1_test_FD = MovingFreqDomain(sub_1_test);
 sub_2_test_FD = MovingFreqDomain(sub_2_test);
 sub_3_test_FD = MovingFreqDomain(sub_3_test);
 
-save('subject1features.mat', 'sub_1_train_MA', 'sub_1_glove_MA', 'sub_1_test_MA', \
+save('subject1features.mat', 'sub_1_train_MA', 'sub_1_glove_MA', 'sub_1_test_MA', ...
                              'sub_1_train_FD', 'sub_1_glove_FD', 'sub_1_test_FD');
 
-save('subject2features.mat', 'sub_2_train_MA', 'sub_2_glove_MA', 'sub_2_test_MA', \
+save('subject2features.mat', 'sub_2_train_MA', 'sub_2_glove_MA', 'sub_2_test_MA', ...
                              'sub_2_train_FD', 'sub_2_glove_FD', 'sub_2_test_FD');
 
-save('subject3features.mat', 'sub_3_train_MA', 'sub_3_glove_MA', 'sub_3_test_MA', \
+save('subject3features.mat', 'sub_3_train_MA', 'sub_3_glove_MA', 'sub_3_test_MA', ...
                              'sub_3_train_FD', 'sub_3_glove_FD', 'sub_3_test_FD');
 
