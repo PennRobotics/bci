@@ -1,5 +1,7 @@
 function [output] = MovingAverage(input)
 
+debug_output = 1; %TODO
+
 win_size = 100; % [ms]
 overlap = 50; % [ms]
 Fs = 200; % [freq. divisions]
@@ -17,8 +19,11 @@ outputE = zeros(max_chan, fn_len);
 % This is used to make frequency bands relatively same-sized
 reduce = (linspace(1e-4, 1, 101)' .^ 2) ./ linspace(1500,1,101)';
 
+if debug_output; fprintf('\n'); end
+
 for chan = 1 : max_chan
 
+  if debug_output; fprintf('%i ', chan); end
   % spectrogram(sub_1_train_part(:,chan), win_size, overlap, Fs, F);
   [S, F_, T_, P, Fc, Tc] = spectrogram(input(:,chan), win_size, overlap, Fs, F);
 
@@ -46,6 +51,8 @@ for chan = 1 : max_chan
     outputE(chan, i) = freq_160_to_175;
   end
 end
+
+if debug_output; fprintf('\n'); end
 
 output = [outputA; outputB; outputC; outputD; outputE];
 end
