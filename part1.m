@@ -3,8 +3,8 @@ username = 'brwr';
 password_bin = '~/Downloads/BCI/brw_ieeglogin.bin';
 
 subject1 = true;
-subject2 = false;
-subject3 = false;
+subject2 = true;
+subject3 = true;
 
 % SUBJECT 1
 if subject1
@@ -36,7 +36,6 @@ if subject3
   session_3_test = IEEGSession('I521_A0014_D003', username, password_bin);
 end
 
-% TODO(brwr): Replace hard-coded numbers with variables using IEEG object size
 nr_1_train   = session_1_train.data.rawChannels(1).getNrSamples;
 nr_1_glove   = session_1_glove.data.rawChannels(1).getNrSamples;
 nr_1_test    = session_1_test .data.rawChannels(1).getNrSamples;
