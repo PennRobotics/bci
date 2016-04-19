@@ -72,3 +72,6 @@ for index = 1:1:length(session3_Test_ECoG.data.rawChannels)
     nr = ceil((session3_Test_ECoG.data.rawChannels(index).get_tsdetails.getEndTime)/(1e6)*session3_Test_ECoG.data.rawChannels(index).sampleRate);
     Test_ECoG_3(:, index) = session3_Test_ECoG.data.getvalues(1:(nr), index:index)';
 end
+
+%% Importing from Git local folder
+
