@@ -1,5 +1,5 @@
-username = 'brwr'
-password_bin = '../brw_ieeglogin.bin'
+username = 'brwr';
+password_bin = '~/Downloads/BCI/brw_ieeglogin.bin';
 
 % SUBJECT 1
 % Training ECoG
