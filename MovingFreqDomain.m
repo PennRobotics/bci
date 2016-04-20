@@ -29,11 +29,11 @@ for chan = 1 : max_chan
 
   for i = 2 : fn_len
       % Constant also used to make frequency bands similar magnitude
-    freq_5_to_15    =  mean(S( 2: 4, i - 1));
-    freq_20_to_25   =  mean(S( 5: 6, i - 1));
-    freq_75_to_115  =  mean(S(16:24, i - 1));
-    freq_125_to_160 =  mean(S(26:33, i - 1));
-    freq_160_to_175 =  mean(S(33:36, i - 1));
+    freq_5_to_15    =  mean(absS( 2: 4, i - 1));
+    freq_20_to_25   =  mean(absS( 5: 6, i - 1));
+    freq_75_to_115  =  mean(absS(16:24, i - 1));
+    freq_125_to_160 =  mean(absS(26:33, i - 1));
+    freq_160_to_175 =  mean(absS(33:36, i - 1));
 
     outputA(i, chan) = freq_5_to_15;
     outputB(i, chan) = freq_20_to_25;
