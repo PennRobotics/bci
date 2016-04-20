@@ -8,3 +8,9 @@ Archana Ramachandran
 Brian Wright
 ```
 *University of Pennsylvania*
+
+## Progress
+|    Date    | Correlation |
+| ----------:| ----------- |
+| 2016-04-19 | 0.0000      |
+| 2016-04-20 | 0.0000      |
