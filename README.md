@@ -10,7 +10,7 @@ Brian Wright
 *University of Pennsylvania*
 
 ## Progress
-|    Date    | Correlation |
-| ----------:| ----------- |
-| 2016-04-19 | 0.0000      |
-| 2016-04-20 | 0.2912      |
+|    Date    | Correlation | Filename |
+| ----------:|:-----------:| -------- |
+| 2016-04-19 |   0.0000    | af-4-20  |
+| 2016-04-20 |   0.2912    | af-4-20b |
