@@ -135,4 +135,8 @@ YY1 = spline(0 : 50 : L1 - 1, Y1_Final', (0 : L1 - 1))';
 YY2 = spline(0 : 50 : L2 - 1, Y2_Final', (0 : L2 - 1))';
 YY3 = spline(0 : 50 : L3 - 1, Y3_Final', (0 : L3 - 1))';
 
+predicted_dg{1} = YY1;
+predicted_dg{2} = YY2;
+predicted_dg{3} = YY3;
 
+save('axon_fired.mat', 'predicted_dg');
