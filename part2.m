@@ -101,7 +101,6 @@ N = 4; % Number of delays
 % TODO(brwr): Make sure this works properly!
 sub_1_train_final(:, 55) = [];
 sub_1_test_final(:, 55) = [];
-sub1_glove_decimated(:, 55) = [];
 
 disp('Generating Training R Matrices')
 R1_full = GenerateRMatrix(sub_1_train_final, N);
