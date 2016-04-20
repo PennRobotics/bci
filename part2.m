@@ -6,6 +6,7 @@ load subject1
 load subject2
 load subject3
 
+disp('Generating New Features')
 % sub_1_train_MA = MovingAverage(Train_ECoG_1); disp('1 Train MA')
 % save('subject1a.mat', 'sub_1_train_MA'); % clear s*
  sub_1_train_FD = MovingFreqDomain(Train_ECoG_1); disp('1 Train FD')
