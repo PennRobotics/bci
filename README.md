@@ -41,3 +41,10 @@ Brain-Computer Interface Data Competition."
 - Adjust frequency bands and band sizes
 - Wavelet domain ?
 - ???
+
+## References
+http://sccn.ucsd.edu/eeglab/
+
+http://martinos.org/mne/stable/
+
+http://mne-tools.github.io/mne-python-intro/
