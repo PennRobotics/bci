@@ -19,7 +19,8 @@ Brian Wright
 | 2016-04-20 |   0.2898    | af-4-20e |
 | 2016-04-20 |   0.2898    | af-4-20f |
 | 2016-04-20 | **0.2950**  | af-4-20g |
-| 2016-04-20 |   0.????    | af-4-20h |
+| 2016-04-20 |   0.2950 ?  | af-4-20h |
+| 2016-04-20 |   0.????    | af-4-20i |
 
 ## Project Description
 Three patients had EEG array recordings collected while moving individual fingers
