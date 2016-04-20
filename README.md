@@ -7,7 +7,6 @@ Sung Min Ha
 Archana Ramachandran
 Brian Wright
 ```
-*University of Pennsylvania*
 
 ## Progress
 |    Date    | Correlation | Filename |
@@ -48,3 +47,6 @@ http://sccn.ucsd.edu/eeglab/
 http://martinos.org/mne/stable/
 
 http://mne-tools.github.io/mne-python-intro/
+
+- - - - -
+*University of Pennsylvania*
