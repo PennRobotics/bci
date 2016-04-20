@@ -12,9 +12,9 @@ YY3 = predicted_dg{3};
 %mean2 = mean(YY2);
 %mean3 = mean(YY3);
 
-%L1 = size(YY1, 1);
-%L2 = size(YY2, 1);
-%L3 = size(YY3, 1);
+L1 = size(YY1, 1);
+L2 = size(YY2, 1);
+L3 = size(YY3, 1);
 
 %Y1_scaled = (YY1 - ones(L1, 1) * mean(YY1)) ./ (ones(L1, 1) * std(YY1));
 %Y2_scaled = (YY2 - ones(L2, 1) * mean(YY2)) ./ (ones(L2, 1) * std(YY2));
