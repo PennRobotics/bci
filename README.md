@@ -42,6 +42,7 @@ Brain-Computer Interface Data Competition."
 - Remove channel 55
 - New features: line length, energy, power, normalized input
 - Adjust frequency bands and band sizes
+- Identify most influential electrodes in the R matrix. Diff(E1, E2) as new feature.
 - Wavelet domain ?
 - ???
 
