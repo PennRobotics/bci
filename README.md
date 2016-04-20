@@ -25,7 +25,7 @@ found in a publication by K. J. Miller et al, "Prediction of Finger Flexion: 4th
 Brain-Computer Interface Data Competition."
 
 ## Potential Solutions
-- Difference between neurons... Does **corr(n1, n2)** predict usefulness?
+- Difference between neurons (Does **corr(n1, n2)** predict usefulness?)
 - Hysteresis in active finger
 - Low-pass filter
 - Shift several time units
