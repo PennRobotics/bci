@@ -95,7 +95,7 @@ for j = 1:5
      sub3_glove_decimated(:, j) = decimate(Train_Glove_3(:, j), 50);
 end
 
-N = 4; % Number of delays
+N = 2; % Number of delays
 
 % Remove channel 55 from subject 1 dataset
 % TODO(brwr): Make sure this works properly!
