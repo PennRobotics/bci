@@ -1,5 +1,6 @@
 function [output] = MovingAverage(input)
 
+% TODO(brwr): Remove hard-coded 50 and 100
 max_chan = size(input, 2);
 fn_len = size(input, 1) / 50;
 
