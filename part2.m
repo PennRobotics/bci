@@ -25,17 +25,17 @@ load subject3
 % sub_3_test_part = Test_ECoG_3(1:part_length3, 16:31);
 
 sub_1_train_MA = MovingAverage(Train_ECoG_1); disp('1 Train MA')
-save('subject1a.mat', 'sub_1_train_MA'); clear s*
+save('subject1a.mat', 'sub_1_train_MA'); % clear s*
 sub_1_train_FD = MovingFreqDomain(Train_ECoG_1); disp('1 Train FD')
-save('subject1b.mat', 'sub_1_train_FD'); clear s*
+save('subject1b.mat', 'sub_1_train_FD'); %clear s*
 sub_1_glove_MA = MovingAverage(Train_Glove_1); disp('1 Glove MA')
-save('subject1c.mat', 'sub_1_glove_MA'); clear s*
+save('subject1c.mat', 'sub_1_glove_MA'); %clear s*
 sub_1_glove_FD = MovingFreqDomain(Train_Glove_1); disp('1 Glove FD')
-save('subject1d.mat', 'sub_1_glove_FD'); clear s*
+save('subject1d.mat', 'sub_1_glove_FD'); %clear s*
 sub_1_test_MA = MovingAverage(Test_ECoG_1); disp('1 Test MA')
-save('subject1e.mat', 'sub_1_test_MA'); clear s*
+save('subject1e.mat', 'sub_1_test_MA'); %clear s*
 sub_1_test_FD = MovingFreqDomain(Test_ECoG_1); disp('1 Test FD')
-save('subject1f.mat', 'sub_1_test_FD'); clear s*
+save('subject1f.mat', 'sub_1_test_FD'); %clear s*
 
 sub_2_train_MA = MovingAverage(Train_ECoG_2); disp('2 Train MA')
 save('subject2a.mat', 'sub_2_train_MA'); clear s*
@@ -62,4 +62,62 @@ sub_3_test_MA = MovingAverage(Test_ECoG_3); disp('3 Test MA')
 save('subject3e.mat', 'sub_3_test_MA'); clear s*
 sub_3_test_FD = MovingFreqDomain(Test_ECoG_3); disp('3 Test FD')
 save('subject3f.mat', 'sub_3_test_FD'); clear s*
+
+
+sub_1_train_final = [sub_1_train_MA , sub_1_train_FD];
+sub_1_glove_final = [sub_1_glove_MA , sub_1_glove_FD];
+
+                       
+                         
+for j = 1:5
+     sub1_glove_decimated(:, j) = decimate(Train_Glove_1(:, j), 50);
+end
+% sub1_glove_decimated = sub1_glove_decimated';
+
+v = 372;
+N = 3;
+M = 310000/50;
+R1 = zeros(6200, 1+(N*v)) ;
+for row = 1:1:(M-N)+1;
+    row_to_add = [1];
+    for j = 1:1:v
+        for i = 1:1:N
+            row_to_add = [row_to_add, sub_1_train_final(i+row-1, j)];
+        end
+    end
+%     size(R); %for debugging only
+    R1(row, :) = row_to_add;
+end
+
+R = R1(4:end-3, :);
+Y = sub1_glove_decimated(4:end-3, :);
+% B = pinv(R' * R) * R'*Y;
+B = (R' * R) \ R' * Y;
+
+sub_1_test_final = [sub_1_test_MA , sub_1_test_FD];
+
+v2 = 372;
+N2 = 3;
+M2 = 147500/50;
+R_x_Test = zeros(2950, 1+(N2*v2)) ;
+for row = 1:1:(M2-N2)+1;
+    row_to_add2 = [1];
+    for j = 1:1:v2
+        for i = 1:1:N2
+            row_to_add2 = [row_to_add2, sub_1_test_final(i+row-1, j)];
+        end
+    end
+%     size(R); %for debugging only
+    R_x_Test(row, :) = row_to_add2;
+end
+
+Xnew = R_x_Test(4:end-3, :); 
+
+Ycap = Xnew * B;
+Y_Final = [repmat(Ycap(1,:),3,1); Ycap; repmat(Ycap(end,:),3,1)];
+L =length(Test_ECoG_1(:,1));
+
+YY = spline(0:50:L-1, Y_Final', (0:L-1));
+
+YY = YY';
 
