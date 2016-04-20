@@ -1,4 +1,4 @@
-load axon_fired
+load axon_fired_4_20
 
 YY1 = predicted_dg{1};
 YY2 = predicted_dg{2};
