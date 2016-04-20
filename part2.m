@@ -147,14 +147,14 @@ L3 = size(Test_ECoG_3, 1);
 % YY3 = pchip(0 : 50 : L3 - 1, Y3_Final', (0 : L3 - 1))';
 
 disp('Output PCHIP Stage 1/2')
-YY1 = pchip(0 : 50 : L1 - 1, Y1_Final', (0 : 10 : L1 - 1))';
-YY2 = pchip(0 : 50 : L2 - 1, Y2_Final', (0 : 10 : L2 - 1))';
-YY3 = pchip(0 : 50 : L3 - 1, Y3_Final', (0 : 10 : L3 - 1))';
+YY1a = pchip(0 : 50 : L1 - 1, Y1_Final', (0 : 10 : L1 - 1))';
+YY2a = pchip(0 : 50 : L2 - 1, Y2_Final', (0 : 10 : L2 - 1))';
+YY3a = pchip(0 : 50 : L3 - 1, Y3_Final', (0 : 10 : L3 - 1))';
 
 disp('Output PCHIP Stage 2/2')
-YY1 = pchip(0 : 10 : L1 - 1, Y1_Final', (0 : L1 - 1))';
-YY2 = pchip(0 : 10 : L2 - 1, Y2_Final', (0 : L2 - 1))';
-YY3 = pchip(0 : 10 : L3 - 1, Y3_Final', (0 : L3 - 1))';
+YY1 = pchip(0 : 10 : L1 - 1, YY1a', (0 : L1 - 1))';
+YY2 = pchip(0 : 10 : L2 - 1, YY2a', (0 : L2 - 1))';
+YY3 = pchip(0 : 10 : L3 - 1, YY3a', (0 : L3 - 1))';
 
 predicted_dg{1} = YY1;
 predicted_dg{2} = YY2;
