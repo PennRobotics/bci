@@ -1,6 +1,7 @@
 % TODO(brwr): 50 is hard-coded
 clear all
 
+disp('Loading Subject Raw Features')
 load subject1
 load subject2
 load subject3
@@ -65,6 +66,7 @@ load subject3
 %save('subject3f.mat', 'sub_3_test_FD'); clear s*
 
 
+disp('Loading Subject Features')
 load subject1a 
 load subject1b
 load subject1e
@@ -93,8 +95,15 @@ for j = 1:5
      sub3_glove_decimated(:, j) = decimate(Train_Glove_3(:, j), 50);
 end
 
-N = 3; % Number of delays
+N = 4; % Number of delays
 
+% Remove channel 55 from subject 1 dataset
+% TODO(brwr): Make sure this works properly!
+sub_1_train_final(:, 55) = [];
+sub_1_test_final(:, 55) = [];
+sub_1_glove_decimated(:, 55) = [];
+
+disp('Generating Training R Matrices')
 R1_full = GenerateRMatrix(sub_1_train_final, N);
 R2_full = GenerateRMatrix(sub_2_train_final, N);
 R3_full = GenerateRMatrix(sub_3_train_final, N);
@@ -107,10 +116,12 @@ Y1 = sub1_glove_decimated(1 + N : end - N, :);
 Y2 = sub2_glove_decimated(1 + N : end - N, :);
 Y3 = sub3_glove_decimated(1 + N : end - N, :);
 
+disp('Linear Regression')
 beta1 = (R1' * R1) \ R1' * Y1;
 beta2 = (R2' * R2) \ R2' * Y2;
 beta3 = (R3' * R3) \ R3' * Y3;
 
+disp('Generating Testing R Matrices')
 R1_X = GenerateRMatrix(sub_1_test_final, N);
 R2_X = GenerateRMatrix(sub_2_test_final, N);
 R3_X = GenerateRMatrix(sub_3_test_final, N);
@@ -131,6 +142,7 @@ L1 = size(Test_ECoG_1, 1);
 L2 = size(Test_ECoG_2, 1);
 L3 = size(Test_ECoG_3, 1);
 
+disp('Output Spline')
 YY1 = spline(0 : 50 : L1 - 1, Y1_Final', (0 : L1 - 1))';
 YY2 = spline(0 : 50 : L2 - 1, Y2_Final', (0 : L2 - 1))';
 YY3 = spline(0 : 50 : L3 - 1, Y3_Final', (0 : L3 - 1))';
@@ -139,4 +151,9 @@ predicted_dg{1} = YY1;
 predicted_dg{2} = YY2;
 predicted_dg{3} = YY3;
 
+disp('Saving axon_fired.mat')
 save('axon_fired.mat', 'predicted_dg');
+
+disp('Done.')
+disp(' ')
+disp(' ')
