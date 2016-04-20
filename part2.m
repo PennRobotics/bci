@@ -95,7 +95,7 @@ for j = 1:5
      sub3_glove_decimated(:, j) = decimate(Train_Glove_3(:, j), 50);
 end
 
-N = 2; % Number of delays
+N = 3; % Number of delays
 
 % Remove channel 55 from subject 1 dataset
 % TODO(brwr): Make sure this works properly!
@@ -145,10 +145,15 @@ L1 = size(Test_ECoG_1, 1);
 L2 = size(Test_ECoG_2, 1);
 L3 = size(Test_ECoG_3, 1);
 
-disp('Output Spline')
-YY1 = spline(0 : 50 : L1 - 1, Y1_Final', (0 : L1 - 1))';
-YY2 = spline(0 : 50 : L2 - 1, Y2_Final', (0 : L2 - 1))';
-YY3 = spline(0 : 50 : L3 - 1, Y3_Final', (0 : L3 - 1))';
+% disp('Output Spline')
+% YY1 = spline(0 : 50 : L1 - 1, Y1_Final', (0 : L1 - 1))';
+% YY2 = spline(0 : 50 : L2 - 1, Y2_Final', (0 : L2 - 1))';
+% YY3 = spline(0 : 50 : L3 - 1, Y3_Final', (0 : L3 - 1))';
+
+disp('Output PCHIP')
+YY1 = pchip(0 : 50 : L1 - 1, Y1_Final', (0 : L1 - 1))';
+YY2 = pchip(0 : 50 : L2 - 1, Y2_Final', (0 : L2 - 1))';
+YY3 = pchip(0 : 50 : L3 - 1, Y3_Final', (0 : L3 - 1))';
 
 predicted_dg{1} = YY1;
 predicted_dg{2} = YY2;
