@@ -26,59 +26,50 @@ load subject3
 % sub_2_test_part = Test_ECoG_2(1:part_length3, 16:31);
 % sub_3_test_part = Test_ECoG_3(1:part_length3, 16:31);
 
-%sub_1_train_MA = MovingAverage(Train_ECoG_1); disp('1 Train MA')
-%save('subject1a.mat', 'sub_1_train_MA'); % clear s*
-%sub_1_train_FD = MovingFreqDomain(Train_ECoG_1); disp('1 Train FD')
-%save('subject1b.mat', 'sub_1_train_FD'); %clear s*
-%sub_1_glove_MA = MovingAverage(Train_Glove_1); disp('1 Glove MA')
-%save('subject1c.mat', 'sub_1_glove_MA'); %clear s*
-%sub_1_glove_FD = MovingFreqDomain(Train_Glove_1); disp('1 Glove FD')
-%save('subject1d.mat', 'sub_1_glove_FD'); %clear s*
-%sub_1_test_MA = MovingAverage(Test_ECoG_1); disp('1 Test MA')
-%save('subject1e.mat', 'sub_1_test_MA'); %clear s*
-%sub_1_test_FD = MovingFreqDomain(Test_ECoG_1); disp('1 Test FD')
-%save('subject1f.mat', 'sub_1_test_FD'); %clear s*
+% sub_1_train_MA = MovingAverage(Train_ECoG_1); disp('1 Train MA')
+% save('subject1a.mat', 'sub_1_train_MA'); % clear s*
+% sub_1_train_FD = MovingFreqDomain(Train_ECoG_1); disp('1 Train FD')
+% save('subject1b.mat', 'sub_1_train_FD'); %clear s*
+% sub_1_glove_MA = MovingAverage(Train_Glove_1); disp('1 Glove MA')
+% save('subject1c.mat', 'sub_1_glove_MA'); %clear s*
+% sub_1_glove_FD = MovingFreqDomain(Train_Glove_1); disp('1 Glove FD')
+% save('subject1d.mat', 'sub_1_glove_FD'); %clear s*
+% sub_1_test_MA = MovingAverage(Test_ECoG_1); disp('1 Test MA')
+% save('subject1e.mat', 'sub_1_test_MA'); %clear s*
+% sub_1_test_FD = MovingFreqDomain(Test_ECoG_1); disp('1 Test FD')
+% save('subject1f.mat', 'sub_1_test_FD'); %clear s*
 
-%sub_2_train_MA = MovingAverage(Train_ECoG_2); disp('2 Train MA')
-%save('subject2a.mat', 'sub_2_train_MA'); clear s*
-%sub_2_train_FD = MovingFreqDomain(Train_ECoG_2); disp('2 Train FD')
-%save('subject2b.mat', 'sub_2_train_FD'); clear s*
-%sub_2_glove_MA = MovingAverage(Train_Glove_2); disp('2 Glove MA')
-%save('subject2c.mat', 'sub_2_glove_MA'); clear s*
-%sub_2_glove_FD = MovingFreqDomain(Train_Glove_2); disp('2 Glove FD')
-%save('subject2d.mat', 'sub_2_glove_FD'); clear s*
-%sub_2_test_MA = MovingAverage(Test_ECoG_2); disp('2 Test MA')
-%save('subject2e.mat', 'sub_2_test_MA'); clear s*
-%sub_2_test_FD = MovingFreqDomain(Test_ECoG_2); disp('2 Test FD')
-%save('subject2f.mat', 'sub_2_test_FD'); clear s*
+% sub_2_train_MA = MovingAverage(Train_ECoG_2); disp('2 Train MA')
+% save('subject2a.mat', 'sub_2_train_MA'); clear s*
+% sub_2_train_FD = MovingFreqDomain(Train_ECoG_2); disp('2 Train FD')
+% save('subject2b.mat', 'sub_2_train_FD'); clear s*
+% sub_2_glove_MA = MovingAverage(Train_Glove_2); disp('2 Glove MA')
+% save('subject2c.mat', 'sub_2_glove_MA'); clear s*
+% sub_2_glove_FD = MovingFreqDomain(Train_Glove_2); disp('2 Glove FD')
+% save('subject2d.mat', 'sub_2_glove_FD'); clear s*
+% sub_2_test_MA = MovingAverage(Test_ECoG_2); disp('2 Test MA')
+% save('subject2e.mat', 'sub_2_test_MA'); clear s*
+% sub_2_test_FD = MovingFreqDomain(Test_ECoG_2); disp('2 Test FD')
+% save('subject2f.mat', 'sub_2_test_FD'); clear s*
 
-%sub_3_train_MA = MovingAverage(Train_ECoG_3); disp('3 Train MA')
-%save('subject3a.mat', 'sub_3_train_MA'); clear s*
-%sub_3_train_FD = MovingFreqDomain(Train_ECoG_3); disp('3 Train FD')
-%save('subject3b.mat', 'sub_3_train_FD'); clear s*
-%sub_3_glove_MA = MovingAverage(Train_Glove_3); disp('3 Glove MA')
-%save('subject3c.mat', 'sub_3_glove_MA'); clear s*
-%sub_3_glove_FD = MovingFreqDomain(Train_Glove_3); disp('3 Glove FD')
-%save('subject3d.mat', 'sub_3_glove_FD'); clear s*
-%sub_3_test_MA = MovingAverage(Test_ECoG_3); disp('3 Test MA')
-%save('subject3e.mat', 'sub_3_test_MA'); clear s*
-%sub_3_test_FD = MovingFreqDomain(Test_ECoG_3); disp('3 Test FD')
-%save('subject3f.mat', 'sub_3_test_FD'); clear s*
+% sub_3_train_MA = MovingAverage(Train_ECoG_3); disp('3 Train MA')
+% save('subject3a.mat', 'sub_3_train_MA'); clear s*
+% sub_3_train_FD = MovingFreqDomain(Train_ECoG_3); disp('3 Train FD')
+% save('subject3b.mat', 'sub_3_train_FD'); clear s*
+% sub_3_glove_MA = MovingAverage(Train_Glove_3); disp('3 Glove MA')
+% save('subject3c.mat', 'sub_3_glove_MA'); clear s*
+% sub_3_glove_FD = MovingFreqDomain(Train_Glove_3); disp('3 Glove FD')
+% save('subject3d.mat', 'sub_3_glove_FD'); clear s*
+% sub_3_test_MA = MovingAverage(Test_ECoG_3); disp('3 Test MA')
+% save('subject3e.mat', 'sub_3_test_MA'); clear s*
+% sub_3_test_FD = MovingFreqDomain(Test_ECoG_3); disp('3 Test FD')
+% save('subject3f.mat', 'sub_3_test_FD'); clear s*
 
 
 disp('Loading Subject Features')
-load subject1a 
-load subject1b
-load subject1e
-load subject1f
-load subject2a
-load subject2b
-load subject2e
-load subject2f
-load subject3a
-load subject3b
-load subject3e
-load subject3f
+load subject1a; load subject1b; load subject1e; load subject1f;
+load subject2a; load subject2b; load subject2e; load subject2f;
+load subject3a; load subject3b; load subject3e; load subject3f;
 
 sub_1_test_final = [sub_1_test_MA , sub_1_test_FD];
 sub_1_train_final = [sub_1_train_MA , sub_1_train_FD];
@@ -150,10 +141,20 @@ L3 = size(Test_ECoG_3, 1);
 % YY2 = spline(0 : 50 : L2 - 1, Y2_Final', (0 : L2 - 1))';
 % YY3 = spline(0 : 50 : L3 - 1, Y3_Final', (0 : L3 - 1))';
 
-disp('Output PCHIP')
-YY1 = pchip(0 : 50 : L1 - 1, Y1_Final', (0 : L1 - 1))';
-YY2 = pchip(0 : 50 : L2 - 1, Y2_Final', (0 : L2 - 1))';
-YY3 = pchip(0 : 50 : L3 - 1, Y3_Final', (0 : L3 - 1))';
+% disp('Output PCHIP')
+% YY1 = pchip(0 : 50 : L1 - 1, Y1_Final', (0 : L1 - 1))';
+% YY2 = pchip(0 : 50 : L2 - 1, Y2_Final', (0 : L2 - 1))';
+% YY3 = pchip(0 : 50 : L3 - 1, Y3_Final', (0 : L3 - 1))';
+
+disp('Output PCHIP Stage 1/2')
+YY1 = pchip(0 : 50 : L1 - 1, Y1_Final', (0 : 10 : L1 - 1))';
+YY2 = pchip(0 : 50 : L2 - 1, Y2_Final', (0 : 10 : L2 - 1))';
+YY3 = pchip(0 : 50 : L3 - 1, Y3_Final', (0 : 10 : L3 - 1))';
+
+disp('Output PCHIP Stage 2/2')
+YY1 = pchip(0 : 10 : L1 - 1, Y1_Final', (0 : L1 - 1))';
+YY2 = pchip(0 : 10 : L2 - 1, Y2_Final', (0 : L2 - 1))';
+YY3 = pchip(0 : 10 : L3 - 1, Y3_Final', (0 : L3 - 1))';
 
 predicted_dg{1} = YY1;
 predicted_dg{2} = YY2;
