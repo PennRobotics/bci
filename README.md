@@ -30,6 +30,9 @@ Brian Wright
 
 *When __af-4-20__ was submitted with the __floor()__ function, score dropped from 0.2912 to 0.2387.*
 
+## Details of Highest Scoring Algorithm
+*Currently Unknown --- Check git history!*
+
 ## Project Description
 Three patients had EEG array recordings collected while moving individual fingers
 when cued by a monitor. The goal of the project is to create a model predicting
@@ -53,6 +56,7 @@ Brain-Computer Interface Data Competition."
 - New features: line length, energy, power, normalized input
 - Adjust frequency bands and band sizes
 - Identify most influential electrodes in the R matrix. Diff(E1, E2) as new feature.
+- Tiny nudges e.g. x^1.02 or x^0.98
 - Wavelet domain ?
 - ???
 
