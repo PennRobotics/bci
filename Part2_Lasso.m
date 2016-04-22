@@ -133,11 +133,40 @@ for finger = 1:1:size(Y2, 2)
     sprintf('\nFinished %d-th finger, subject2', finger)
 end
 
-for finger = 1:1:size(Y3, 3)
+for finger = 1:1:size(Y3, 2)
     [beta, fitinfo] = lasso(R3, Y3(:, finger));
     beta3(:, :, finger) = beta;
     fitinfo3{finger} = fitinfo;
     sprintf('\nFinished %d-th finger, subject3', finger)
+end
+
+%% Getting the best fit column among NumLambda = 100 for each subject
+min_mse = ones(3, size(Y1, 2)) .* 9e99;
+best_index = zeros(3, size(Y1, 2));
+for subject = 1:1:3
+    if subject == 1
+        fitinfo = fitinfo1;
+    elseif subject == 2
+        fitinfo = fitinfo2;
+    elseif subject == 3
+        fitinfo = fitinfo3;
+    else
+        disp('error')
+        break;
+    end
+    
+    for finger = 1:1:size(Y1, 2)
+%         fitinfo_finger = fitinfo{finger};
+        fitinfo_mse = fitinfo{finger}.MSE;
+        for index = 1:1:length(fitinfo_mse)
+            sprintf('\nChecking %d subject, finger %d/5, index %d/100', subject, finger, index)
+            if fitinfo_mse(index) < min_mse(subject, finger)
+                sprintf('\nSUCCSS for %d subject, finger %d/5, index %d/100', subject, finger, index)
+                min_mse(subject, finger) = fitinfo_mse(index);
+                best_index(subject, finger) = index;
+            end
+        end
+    end
 end
 
 %%
@@ -165,19 +194,19 @@ Y3_hat = zeros(size(X3, 1), size(Y3, 2));
 
 %%If I am not wrong, the first column is the one with highest coefficient
 
-for finger = 1:1:size(Y1, 1)
+for finger = 1:1:size(Y1, 2)
     fitinfo = fitinfo1{finger};
-    Y1_hat(:, finger) = X1 * beta1(:, 1, finger) + fitinfo.Intercept(1);
+    Y1_hat(:, finger) = X1 * beta1(:, best_index(1, finger), finger) + fitinfo.Intercept(1);
 end
 
-for finger = 1:1:size(Y2, 1)
+for finger = 1:1:size(Y2, 2)
     fitinfo = fitinfo2{finger};
-    Y2_hat(:, finger) = X2 * beta2(:, 1, finger) + fitinfo.Intercept(1);
+    Y2_hat(:, finger) = X2 * beta2(:, best_index(2, finger), finger) + fitinfo.Intercept(1);
 end
 
-for finger = 1:1:size(Y3, 1)
+for finger = 1:1:size(Y3, 2)
     fitinfo = fitinfo3{finger};
-    Y3_hat(:, finger) = X3 * beta3(:, 1, finger) + fitinfo.Intercept(1);
+    Y3_hat(:, finger) = X3 * beta3(:, best_index(3, finger), finger) + fitinfo.Intercept(1);
 end
 
 
@@ -210,12 +239,53 @@ YY1 = pchip(0 : 10 : L1 - 1, YY1a', (0 : L1 - 1))';
 YY2 = pchip(0 : 10 : L2 - 1, YY2a', (0 : L2 - 1))';
 YY3 = pchip(0 : 10 : L3 - 1, YY3a', (0 : L3 - 1))';
 
-predicted_dg{1} = YY1;
-predicted_dg{2} = YY2;
-predicted_dg{3} = YY3;
+%smooth_and_maybe_round
+
+YY1_raw = YY1;
+YY2_raw = YY2;
+YY3_raw = YY3;
+
+YY1_smooth = zeros(size(YY1));
+YY2_smooth = zeros(size(YY2));
+YY3_smooth = zeros(size(YY3));
+
+for finger = 1:1:size(Y1, 2)    %assuming all three subjects have 5 fingers!!
+    YY1_smooth(:, finger) = smooth(YY1(:, finger));
+    YY2_smooth(:, finger) = smooth(YY2(:, finger));
+    YY3_smooth(:, finger) = smooth(YY3(:, finger));
+end
+
+YY1_smooth_round = zeros(size(YY1));
+YY2_smooth_round = zeros(size(YY2));
+YY3_smooth_round = zeros(size(YY3));
+
+for finger = 1:1:size(Y1, 2)    %assuming all three subjects have 5 fingers!!
+    YY1_smooth_round(:, finger) = smooth(round(YY1(:, finger)));
+    YY2_smooth_round(:, finger) = smooth(round(YY2(:, finger)));
+    YY3_smooth_round(:, finger) = smooth(round(YY3(:, finger)));
+end
+
+predicted_dg{1} = YY1_raw;
+predicted_dg{2} = YY2_raw;
+predicted_dg{3} = YY3_raw;
 
 disp('Saving axon_fired.mat')
-save('axon_fired.mat', 'predicted_dg');
+save('axon_fired_default_lasso.mat', 'predicted_dg');
+
+predicted_dg{1} = YY1_smooth;
+predicted_dg{2} = YY2_smooth;
+predicted_dg{3} = YY3_smooth;
+
+disp('Saving axon_fired.mat')
+save('axon_fired_default_lasso_smoothed.mat', 'predicted_dg');
+
+predicted_dg{1} = YY1_smooth_round;
+predicted_dg{2} = YY2_smooth_round;
+predicted_dg{3} = YY3_smooth_round;
+
+disp('Saving axon_fired.mat')
+save('axon_fired_default_lasso_smoothed_rounded.mat', 'predicted_dg');
+
 
 disp('Done.')
 disp(' ')
