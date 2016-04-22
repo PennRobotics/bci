@@ -163,16 +163,21 @@ Y3_hat = zeros(size(X3, 1), size(Y3, 2));
 % Y2_hat = X2 * beta2;
 % Y3_hat = X3 * beta3;
 
+%%If I am not wrong, the first column is the one with highest coefficient
+
 for finger = 1:1:size(Y1, 1)
-    Y1_hat(:, finger) = X1 * beta1(:, :, finger);
+    fitinfo = fitinfo1{finger};
+    Y1_hat(:, finger) = X1 * beta1(:, 1, finger) + fitinfo.Intercept(1);
 end
 
 for finger = 1:1:size(Y2, 1)
-    Y2_hat(:, finger) = X2 * beta2(:, :, finger);
+    fitinfo = fitinfo2{finger};
+    Y2_hat(:, finger) = X2 * beta2(:, 1, finger) + fitinfo.Intercept(1);
 end
 
 for finger = 1:1:size(Y3, 1)
-    Y3_hat(:, finger) = X3 * beta3(:, :, finger);
+    fitinfo = fitinfo3{finger};
+    Y3_hat(:, finger) = X3 * beta3(:, 1, finger) + fitinfo.Intercept(1);
 end
 
 
