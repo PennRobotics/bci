@@ -1,16 +1,22 @@
 clear all
 
-Ts = 100; Tw = 200;
+Ts =  50; Tw = 250;
 
 disp('Loading Subject Raw Features')
 load subject1
 load subject2
 load subject3
 
-if 0
+% TODO(brwr): Implement channel differences as features
+% % Calculate the difference between these channels
+% ch1 = [ 1,  2,  3,  4];
+% ch2 = [ 5,  8,  9, 13];
+
+if 1
   disp('Generating New Features')
   sub_1_train_MA = MovingAverageAdj(Train_ECoG_1, Ts, Tw); disp('1 Train MA')
   sub_1_train_FD = MovingFreqDomAdj(Train_ECoG_1, Ts, Tw); disp('1 Train FD')
+  % sub_1_train_Diff = FeatureDiff(Train_ECoG_1, ch1, ch2);  disp('1 Train Diff')
   sub_1_test_MA  = MovingAverageAdj( Test_ECoG_1, Ts, Tw); disp('1 Test MA')
   sub_1_test_FD  = MovingFreqDomAdj( Test_ECoG_1, Ts, Tw); disp('1 Test FD')
   save('y_subject1a.mat', 'sub_1_train_MA');

@@ -26,7 +26,8 @@ Brian Wright
 | 2016-04-22 | **0.3292**  | af-4-22  |
 | 2016-04-22 |   0.3114    | af-4-22b |
 | 2016-04-22 |   0.3118    |  lasso   |
-| 2016-04-22 |   0.????    | af-4-22c |
+| 2016-04-22 |   0.2894    | af-4-22c |
+| 2016-04-22 |   0.????    | af-4-22d |
 
 *When __af-4-20__ was submitted with the __floor()__ function, score dropped from 0.2912 to 0.2387.*
 
