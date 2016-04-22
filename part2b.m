@@ -52,12 +52,12 @@ if 0
   save('y_subject1c.mat', 'sub_1_glove_decimated');
   save('y_subject2c.mat', 'sub_2_glove_decimated');
   save('y_subject3c.mat', 'sub_3_glove_decimated');
-else
-  disp('Loading Subject Features')
-  load y_subject1a; load y_subject1b; load y_subject1c; load y_subject1e; load y_subject1f;
-  load y_subject2a; load y_subject2b; load y_subject2c; load y_subject2e; load y_subject2f;
-  load y_subject3a; load y_subject3b; load y_subject3c; load y_subject3e; load y_subject3f;
 end
+
+disp('Loading Subject Features')
+load y_subject1a; load y_subject1b; load y_subject1c; load y_subject1e; load y_subject1f;
+load y_subject2a; load y_subject2b; load y_subject2c; load y_subject2e; load y_subject2f;
+load y_subject3a; load y_subject3b; load y_subject3c; load y_subject3e; load y_subject3f;
 
 sub_1_train_final = [sub_1_train_MA , sub_1_train_FD];
 sub_1_test_final = [sub_1_test_MA , sub_1_test_FD];

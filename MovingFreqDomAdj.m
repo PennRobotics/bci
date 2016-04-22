@@ -1,6 +1,6 @@
 function [output] = MovingFreqDomAdj(input, Tsample, Twindow)
 
-Fs = 200; % [freq. divisions * 2]
+Fs = 400; % [freq. divisions * 2]
 F = 1000; % [Hz]
 
 max_chan = size(input, 2);
@@ -23,11 +23,11 @@ for chan = 1 : max_chan
 
   for i = 1 : fn_len
       % Constant also used to make frequency bands similar magnitude
-    freq_5_to_15    =  mean(absS( 2: 4, i));
-    freq_20_to_25   =  mean(absS( 5: 6, i));
-    freq_75_to_115  =  mean(absS(16:24, i));
-    freq_125_to_160 =  mean(absS(26:33, i));
-    freq_160_to_175 =  mean(absS(33:36, i));
+    freq_5_to_15    =  mean(absS( 4: 8, i));
+    freq_20_to_25   =  mean(absS(10:12, i));
+    freq_75_to_115  =  mean(absS(32:48, i));
+    freq_125_to_160 =  mean(absS(52:66, i));
+    freq_160_to_175 =  mean(absS(66:72, i));
 
     outputA(i, chan) = freq_5_to_15;
     outputB(i, chan) = freq_20_to_25;
