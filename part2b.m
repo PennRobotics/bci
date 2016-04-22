@@ -1,6 +1,6 @@
 clear all
 
-Ts = 50; Tw = 250;
+Ts = 25; Tw = 250;
 
 disp('Loading Subject Raw Features')
 load subject1
@@ -128,14 +128,14 @@ L3 = size(Test_ECoG_3, 1);
 % - Pad ends
 % - Change resample freq (stretch)
 disp('Output PCHIP')
-YY1 = pchip(Tw - Ts : Ts : L1 - 1, Y1_Final', (0 : L1 - 1))';
-YY2 = pchip(Tw - Ts : Ts : L2 - 1, Y2_Final', (0 : L2 - 1))';
-YY3 = pchip(Tw - Ts : Ts : L3 - 1, Y3_Final', (0 : L3 - 1))';
+%YY1 = pchip(Tw - Ts : Ts : L1 - 1, Y1_Final', (0 : L1 - 1))';
+%YY2 = pchip(Tw - Ts : Ts : L2 - 1, Y2_Final', (0 : L2 - 1))';
+%YY3 = pchip(Tw - Ts : Ts : L3 - 1, Y3_Final', (0 : L3 - 1))';
 
 % TODO(brwr): Try this
-% YY1 = pchip(linspace(0, L1, size(Y1_Final, 1)), Y1_Final', linspace(0, L1, L1))';
-% YY2 = pchip(linspace(0, L2, size(Y2_Final, 1)), Y2_Final', linspace(0, L2, L2))';
-% YY3 = pchip(linspace(0, L3, size(Y3_Final, 1)), Y3_Final', linspace(0, L3, L3))';
+ YY1 = pchip(linspace(0, L1, size(Y1_Final, 1)), Y1_Final', linspace(0, L1, L1))';
+ YY2 = pchip(linspace(0, L2, size(Y2_Final, 1)), Y2_Final', linspace(0, L2, L2))';
+ YY3 = pchip(linspace(0, L3, size(Y3_Final, 1)), Y3_Final', linspace(0, L3, L3))';
 
 % disp('Output PCHIP Stage 1/2')
 % YY1a = pchip(0 : Ts : L1 - 1, Y1_Final', (0 : 10 : L1 - 1))';
