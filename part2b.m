@@ -108,6 +108,7 @@ Y1_hat = X1 * beta1;
 Y2_hat = X2 * beta2;
 Y3_hat = X3 * beta3;
 
+% TODO(brwr): Try stretching instead of padding
 Y1_Final = [repmat(Y1_hat(1, :),N,1); Y1_hat; repmat(Y1_hat(end, :),N,1)];
 Y2_Final = [repmat(Y2_hat(1, :),N,1); Y2_hat; repmat(Y2_hat(end, :),N,1)];
 Y3_Final = [repmat(Y3_hat(1, :),N,1); Y3_hat; repmat(Y3_hat(end, :),N,1)];
@@ -125,7 +126,7 @@ L3 = size(Test_ECoG_3, 1);
 % - Pad beginning
 % - Pad end
 % - Pad ends
-% - Change resample freq
+% - Change resample freq (stretch)
 disp('Output PCHIP')
 YY1 = pchip(Tw - Ts : Ts : L1 - 1, Y1_Final', (0 : L1 - 1))';
 YY2 = pchip(Tw - Ts : Ts : L2 - 1, Y2_Final', (0 : L2 - 1))';
