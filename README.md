@@ -31,7 +31,16 @@ Brian Wright
 *When __af-4-20__ was submitted with the __floor()__ function, score dropped from 0.2912 to 0.2387.*
 
 ## Details of Highest Scoring Algorithm
-*Currently Unknown --- Check git history!*
+### Features
+- Moving Average (Tsample = 50 ms, Twindow = 250 ms)
+- Frequency Domain Amplitude, Avg (5--15, 20--25, 75--115, 125--160, 160--175; Hz), 5 Hz bins
+- (Glove reduced using MovingAverageAdj)
+### Implementation
+Trimmed N from beginning and from end
+Appended N to beginning and to end
+Linear Regression to solve Yhat
+**PCHIP** upsampling: stretch Yhat to correct length using indexing (not **linspace**)
+
 
 ## Project Description
 Three patients had EEG array recordings collected while moving individual fingers
