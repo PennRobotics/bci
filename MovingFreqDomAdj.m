@@ -6,7 +6,7 @@ F = 1000; % [Hz]
 max_chan = size(input, 2);
 fn_len = floor((size(input, 1) - Twindow) / Tsample + 1);
 
-overlap = floor(Twindow / Tsample) + 1;
+overlap = Twindow - Tsample;
 
 outputA = zeros(fn_len, max_chan);
 outputB = zeros(fn_len, max_chan);
@@ -20,16 +20,14 @@ for chan = 1 : max_chan
   [S, F_, T_, P, Fc, Tc] = spectrogram(input(:,chan), Twindow, overlap, Fs, F);
 
   absS = abs(S);
-  disp(size(S))
-  return
 
   for i = 1 : fn_len
       % Constant also used to make frequency bands similar magnitude
-    freq_5_to_15    =  mean(absS( 2: 4, i - 1));
-    freq_20_to_25   =  mean(absS( 5: 6, i - 1));
-    freq_75_to_115  =  mean(absS(16:24, i - 1));
-    freq_125_to_160 =  mean(absS(26:33, i - 1));
-    freq_160_to_175 =  mean(absS(33:36, i - 1));
+    freq_5_to_15    =  mean(absS( 2: 4, i));
+    freq_20_to_25   =  mean(absS( 5: 6, i));
+    freq_75_to_115  =  mean(absS(16:24, i));
+    freq_125_to_160 =  mean(absS(26:33, i));
+    freq_160_to_175 =  mean(absS(33:36, i));
 
     outputA(i, chan) = freq_5_to_15;
     outputB(i, chan) = freq_20_to_25;

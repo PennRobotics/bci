@@ -7,51 +7,57 @@ load subject1
 load subject2
 load subject3
 
-disp('Generating New Features')
-sub_1_train_MA = MovingAverageAdj(Train_ECoG_1, Ts, Tw); disp('1 Train MA')
-sub_1_train_FD = MovingFreqDomAdj(Train_ECoG_1, Ts, Tw); disp('1 Train FD')
-sub_1_test_MA  = MovingAverageAdj( Test_ECoG_1, Ts, Tw); disp('1 Test MA')
-sub_1_test_FD  = MovingFreqDomAdj( Test_ECoG_1, Ts, Tw); disp('1 Test FD')
-save('y_subject1a.mat', 'sub_1_train_MA');
-save('y_subject1b.mat', 'sub_1_train_FD');
-save('y_subject1e.mat', 'sub_1_test_MA');
-save('y_subject1f.mat', 'sub_1_test_FD');
-clear s*
+if 0
+  disp('Generating New Features')
+  sub_1_train_MA = MovingAverageAdj(Train_ECoG_1, Ts, Tw); disp('1 Train MA')
+  sub_1_train_FD = MovingFreqDomAdj(Train_ECoG_1, Ts, Tw); disp('1 Train FD')
+  sub_1_test_MA  = MovingAverageAdj( Test_ECoG_1, Ts, Tw); disp('1 Test MA')
+  sub_1_test_FD  = MovingFreqDomAdj( Test_ECoG_1, Ts, Tw); disp('1 Test FD')
+  save('y_subject1a.mat', 'sub_1_train_MA');
+  save('y_subject1b.mat', 'sub_1_train_FD');
+  save('y_subject1e.mat', 'sub_1_test_MA');
+  save('y_subject1f.mat', 'sub_1_test_FD');
+  clear s*
 
-sub_2_train_MA = MovingAverageAdj(Train_ECoG_2, Ts, Tw); disp('2 Train MA')
-sub_2_train_FD = MovingFreqDomAdj(Train_ECoG_2, Ts, Tw); disp('2 Train FD')
-sub_2_test_MA  = MovingAverageAdj( Test_ECoG_2, Ts, Tw); disp('2 Test MA')
-sub_2_test_FD  = MovingFreqDomAdj( Test_ECoG_2, Ts, Tw); disp('2 Test FD')
-save('y_subject2a.mat', 'sub_2_train_MA');
-save('y_subject2b.mat', 'sub_2_train_FD');
-save('y_subject2e.mat', 'sub_2_test_MA');
-save('y_subject2f.mat', 'sub_2_test_FD');
-clear s*
+  sub_2_train_MA = MovingAverageAdj(Train_ECoG_2, Ts, Tw); disp('2 Train MA')
+  sub_2_train_FD = MovingFreqDomAdj(Train_ECoG_2, Ts, Tw); disp('2 Train FD')
+  sub_2_test_MA  = MovingAverageAdj( Test_ECoG_2, Ts, Tw); disp('2 Test MA')
+  sub_2_test_FD  = MovingFreqDomAdj( Test_ECoG_2, Ts, Tw); disp('2 Test FD')
+  save('y_subject2a.mat', 'sub_2_train_MA');
+  save('y_subject2b.mat', 'sub_2_train_FD');
+  save('y_subject2e.mat', 'sub_2_test_MA');
+  save('y_subject2f.mat', 'sub_2_test_FD');
+  clear s*
 
-sub_3_train_MA = MovingAverageAdj(Train_ECoG_3, Ts, Tw); disp('3 Train MA')
-sub_3_train_FD = MovingFreqDomAdj(Train_ECoG_3, Ts, Tw); disp('3 Train FD')
-sub_3_test_MA  = MovingAverageAdj( Test_ECoG_3, Ts, Tw); disp('3 Test MA')
-sub_3_test_FD  = MovingFreqDomAdj( Test_ECoG_3, Ts, Tw); disp('3 Test FD')
-save('y_subject3a.mat', 'sub_3_train_MA');
-save('y_subject3b.mat', 'sub_3_train_FD');
-save('y_subject3e.mat', 'sub_3_test_MA');
-save('y_subject3f.mat', 'sub_3_test_FD');
-clear s*
+  sub_3_train_MA = MovingAverageAdj(Train_ECoG_3, Ts, Tw); disp('3 Train MA')
+  sub_3_train_FD = MovingFreqDomAdj(Train_ECoG_3, Ts, Tw); disp('3 Train FD')
+  sub_3_test_MA  = MovingAverageAdj( Test_ECoG_3, Ts, Tw); disp('3 Test MA')
+  sub_3_test_FD  = MovingFreqDomAdj( Test_ECoG_3, Ts, Tw); disp('3 Test FD')
+  save('y_subject3a.mat', 'sub_3_train_MA');
+  save('y_subject3b.mat', 'sub_3_train_FD');
+  save('y_subject3e.mat', 'sub_3_test_MA');
+  save('y_subject3f.mat', 'sub_3_test_FD');
+  clear s*
 
-for j = 1:5
-     sub_1_glove_decimated(:, j) = decimate(Train_Glove_1(:, j), Ts);
-     sub_2_glove_decimated(:, j) = decimate(Train_Glove_2(:, j), Ts);
-     sub_3_glove_decimated(:, j) = decimate(Train_Glove_3(:, j), Ts);
+  sub_1_glove_decimated = MovingAverageAdj(Train_Glove_1, Ts, Tw);
+  sub_2_glove_decimated = MovingAverageAdj(Train_Glove_2, Ts, Tw);
+  sub_3_glove_decimated = MovingAverageAdj(Train_Glove_3, Ts, Tw);
+
+  % for j = 1:5
+  %   sub_1_glove_decimated(:, j) = decimate(Train_Glove_1(:, j), Ts);
+  %   sub_2_glove_decimated(:, j) = decimate(Train_Glove_2(:, j), Ts);
+  %   sub_3_glove_decimated(:, j) = decimate(Train_Glove_3(:, j), Ts);
+  % end
+
+  save('y_subject1c.mat', 'sub_1_glove_decimated');
+  save('y_subject2c.mat', 'sub_2_glove_decimated');
+  save('y_subject3c.mat', 'sub_3_glove_decimated');
+else
+  disp('Loading Subject Features')
+  load y_subject1a; load y_subject1b; load y_subject1c; load y_subject1e; load y_subject1f;
+  load y_subject2a; load y_subject2b; load y_subject2c; load y_subject2e; load y_subject2f;
+  load y_subject3a; load y_subject3b; load y_subject3c; load y_subject3e; load y_subject3f;
 end
-
-save('y_subject1c.mat', 'sub_1_glove_decimated');
-save('y_subject2c.mat', 'sub_2_glove_decimated');
-save('y_subject3c.mat', 'sub_3_glove_decimated');
-
-% disp('Loading Subject Features')
-% load y_subject1a; load y_subject1b; load y_subject1c; load y_subject1e; load y_subject1f;
-% load y_subject2a; load y_subject2b; load y_subject2c; load y_subject2e; load y_subject2f;
-% load y_subject3a; load y_subject3b; load y_subject3c; load y_subject3e; load y_subject3f;
 
 sub_1_train_final = [sub_1_train_MA , sub_1_train_FD];
 sub_1_test_final = [sub_1_test_MA , sub_1_test_FD];
@@ -115,10 +121,20 @@ L3 = size(Test_ECoG_3, 1);
 % YY2 = spline(0 : 50 : L2 - 1, Y2_Final', (0 : L2 - 1))';
 % YY3 = spline(0 : 50 : L3 - 1, Y3_Final', (0 : L3 - 1))';
 
+% TODO(brwr): Shift data around to fit the original data best
+% - Pad beginning
+% - Pad end
+% - Pad ends
+% - Change resample freq
 disp('Output PCHIP')
-YY1 = pchip(0 : Ts : L1 - 1, Y1_Final', (0 : L1 - 1))';
-YY2 = pchip(0 : Ts : L2 - 1, Y2_Final', (0 : L2 - 1))';
-YY3 = pchip(0 : Ts : L3 - 1, Y3_Final', (0 : L3 - 1))';
+YY1 = pchip(Tw - Ts : Ts : L1 - 1, Y1_Final', (0 : L1 - 1))';
+YY2 = pchip(Tw - Ts : Ts : L2 - 1, Y2_Final', (0 : L2 - 1))';
+YY3 = pchip(Tw - Ts : Ts : L3 - 1, Y3_Final', (0 : L3 - 1))';
+
+% TODO(brwr): Try this
+% YY1 = pchip(linspace(0, L1, size(Y1_Final, 1)), Y1_Final', linspace(0, L1, L1))';
+% YY2 = pchip(linspace(0, L2, size(Y2_Final, 1)), Y2_Final', linspace(0, L2, L2))';
+% YY3 = pchip(linspace(0, L3, size(Y3_Final, 1)), Y3_Final', linspace(0, L3, L3))';
 
 % disp('Output PCHIP Stage 1/2')
 % YY1a = pchip(0 : Ts : L1 - 1, Y1_Final', (0 : 10 : L1 - 1))';
