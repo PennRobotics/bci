@@ -1,6 +1,6 @@
 clear all
 
-Ts = 100; Tw = 400;
+Ts = 100; Tw = 200;
 
 disp('Loading Subject Raw Features')
 load subject1
