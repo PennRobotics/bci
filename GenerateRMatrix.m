@@ -1,15 +1,16 @@
 function R = GenerateRMatrix(input, N);
-M = size(input, 1);
+M = size(input, 1)-N +1;
 v = size(input, 2);
 
-R = zeros(M, 1+(N*v));
-for row = 1 : M-N+1
-  row_to_add = [1];
-  for j = 1 : v
-    for i = 1 : N
-      row_to_add = [row_to_add, input(i + row - 1, j)];
-    end
-  end
-  R(row, :) = row_to_add;
+%R-matrix
+R = ones(M, (1+(N*v)));    %easier to make first column a column of ones
+r = zeros(M, (N*v));
+ij = 0;
+
+for i =1:M
+    r (i, :)=reshape(input((ij+1):(N + ij),:),1,[]);
+    ij = ij +1;
 end
+R(:, 2:end) = r;    %Response matrixend
+fprintf('\n\nMean in Gen Function = %f', mean(mean(R)));
 end
