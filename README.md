@@ -9,25 +9,27 @@ Brian Wright
 ```
 
 ## Progress
-|    Date    | Correlation | Filename |
-|:----------:|:-----------:| -------- |
-| 2016-04-19 |   0.0000    |  *N/A*   |
-| 2016-04-20 | **0.2912**  | af-4-20  |
-| 2016-04-20 |   0.1740    | af-4-20b |
-| 2016-04-20 |   0.2535    | af-4-20c |
-| 2016-04-20 |   0.2903    | af-4-20d |
-| 2016-04-20 |   0.2898    | af-4-20e |
-| 2016-04-20 |   0.2898    | af-4-20f |
-| 2016-04-20 | **0.2950**  | af-4-20g |
-| 2016-04-20 | **0.2951**  | af-4-20h |
-| 2016-04-20 | **0.3112**  | af-4-20i |
-| 2016-04-21 |   0.2414    | af-4-21  |
-| 2016-04-21 |  -0.0017    |  random  |
-| 2016-04-22 | **0.3292**  | af-4-22  |
-| 2016-04-22 |   0.3114    | af-4-22b |
-| 2016-04-22 |   0.3118    |  lasso   |
-| 2016-04-22 |   0.2894    | af-4-22c |
-| 2016-04-22 |   0.????    | af-4-22d |
+|    Date    | Correlation |  Filename  |
+|:----------:|:-----------:| ---------- |
+| 2016-04-19 |   0.0000    |   *N/A*    |
+| 2016-04-20 | **0.2912**  |  af-4-20   |
+| 2016-04-20 |   0.1740    |  af-4-20b  |
+| 2016-04-20 |   0.2535    |  af-4-20c  |
+| 2016-04-20 |   0.2903    |  af-4-20d  |
+| 2016-04-20 |   0.2898    |  af-4-20e  |
+| 2016-04-20 |   0.2898    |  af-4-20f  |
+| 2016-04-20 | **0.2950**  |  af-4-20g  |
+| 2016-04-20 | **0.2951**  |  af-4-20h  |
+| 2016-04-20 | **0.3112**  |  af-4-20i  |
+| 2016-04-21 |   0.2414    |  af-4-21   |
+| 2016-04-21 |  -0.0017    |   random   |
+| 2016-04-22 | **0.3292**  |  af-4-22   |
+| 2016-04-22 |   0.3114    |  af-4-22b  |
+| 2016-04-22 |   0.3118    |   lasso    |
+| 2016-04-22 |   0.2894    |  af-4-22c  |
+| 2016-04-22 | *> 0.3400*  |  correctR  |
+| 2016-04-22 | *> 0.3500*  |   smooth   |
+| 2016-04-23 | **0.4092**  |     a      |
 
 *When __af-4-20__ was submitted with the __floor()__ function, score dropped from 0.2912 to 0.2387.*
 
@@ -36,11 +38,20 @@ Brian Wright
 - Moving Average (Tsample = 50 ms, Twindow = 250 ms)
 - Frequency Domain Amplitude, Avg (5--15, 20--25, 75--115, 125--160, 160--175; Hz), 5 Hz bins
 - (Glove reduced using MovingAverageAdj)
+
 ### Implementation
 Trimmed N from beginning and from end
 Appended N to beginning and to end
 Linear Regression to solve Yhat
 **PCHIP** upsampling: stretch Yhat to correct length using indexing (not **linspace**)
+Signals were smoothed with a moving average---window size of 101 ms.
+
+### Post-Processing
+Noisy output signal is separated into bins with strongest signal determining the active finger.
+Bins are constructed with 1275 ms offset and 4000 ms peak-to-peak distance.
+Separation is performed using the **tukeywin** function (default shape).
+Output shape is a **blackman** window, size 4001 ms, convolved with a delta train aligned with bins.
+Signals were mean-corrected (zero mean) but *not* normalized using standard deviation.
 
 
 ## Project Description
