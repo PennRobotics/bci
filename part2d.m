@@ -1,6 +1,6 @@
 clear all
 
-Ts = 100; Tw = 200;
+Ts = 50; Tw = 250;
 
 disp('Loading Subject Raw Features')
 load subject1
@@ -93,7 +93,7 @@ R1 = R1_full;
 R2 = R2_full;
 R3 = R3_full;
 
-Y1 = sub_1_glove_decimated( N : end , :);
+Y1 = sub_1_glove_decimated(N : end , :);
 Y2 = sub_2_glove_decimated(N : end, :);
 Y3 = sub_3_glove_decimated(N : end, :);
 
