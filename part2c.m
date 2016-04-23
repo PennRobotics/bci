@@ -1,6 +1,6 @@
 clear all
 
-Ts = 100; Tw = 200;
+Ts =  50; Tw = 250;
 
 disp('Loading Subject Raw Features')
 load subject1
@@ -154,7 +154,7 @@ predicted_dg{1} = YY1;
 predicted_dg{2} = YY2;
 predicted_dg{3} = YY3;
 
-disp('Saving axon_fired.mat')
+disp('Saving axon_fired_correctedR.mat')
 save('axon_fired_correctedR.mat', 'predicted_dg');
 
 disp('Done.')
