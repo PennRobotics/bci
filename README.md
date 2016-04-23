@@ -81,8 +81,10 @@ Brain-Computer Interface Data Competition."
 - Predictive RNN for active finger waveform
 ### Post-processing
 - Manually place each peak
+- Find peak centers using Matlab's peak detection routine (currently commented out)
 - Swap single elements where fingers 3-4-5 are indiscernable to gauge change in correlation
 - Adjust shape of output
+- Identify frequency of glove output and create sinusoids for individual elements
 - Weighted mean of generated signal and post-processed signal
 
 ## References
