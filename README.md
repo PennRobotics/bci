@@ -33,7 +33,8 @@ Brian Wright
 | 2016-04-23 |  **0.4228**   |     a2     |
 | 2016-04-23 |  **0.4374**   |     a3     |
 | 2016-04-23 |    0.3412     |  by hand   |
-| 2016-04-?? |    0.????     |            |
+| 2016-04-?? |    0.4292     |     a4     |
+| 2016-04-?? |    0.4069     |     a5     |
 
 *When __af-4-20__ was submitted with the __floor()__ function, score dropped from 0.2912 to 0.2387.*
 
@@ -59,6 +60,8 @@ This shape is convolved with a delta train centered on each bin.
 Signals were mean-corrected (zero mean) and normalized by dividing standard deviation.
 (Normalization was NOT used for a2.)
 
+Larger bin sizes did not result in incremental improvement.
+
 
 ## Project Description
 Three patients had EEG array recordings collected while moving individual fingers
@@ -79,7 +82,7 @@ Brain-Computer Interface Data Competition."
 - Nonlinear activation function (hidden layer)
 - Remove channel 55
 - Predictive RNN for active finger waveform
-### Post-processing
+### Output Post-processing
 - Manually place each peak
 - Find peak centers using Matlab's peak detection routine (currently commented out)
 - Swap single elements where fingers 3-4-5 are indiscernable to gauge change in correlation
