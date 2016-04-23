@@ -30,7 +30,10 @@ Brian Wright
 | 2016-04-22 | **> 0.3400**  |  correctR  |
 | 2016-04-22 | **> 0.3500**  |   smooth   |
 | 2016-04-23 |  **0.4092**   |     a      |
-| 2016-04-23 |    0.????     |     a2     |
+| 2016-04-23 |  **0.4228**   |     a2     |
+| 2016-04-23 |  **0.4374**   |     a3     |
+| 2016-04-23 |    0.3412     |  by hand   |
+| 2016-04-?? |    0.????     |            |
 
 *When __af-4-20__ was submitted with the __floor()__ function, score dropped from 0.2912 to 0.2387.*
 
@@ -50,9 +53,11 @@ Signals were smoothed with a moving average---window size of 101 ms.
 ### Post-Processing
 Noisy output signal is separated into bins with strongest signal determining the active finger.
 Bins are constructed with 1275 ms offset and 4000 ms peak-to-peak distance.
-Separation is performed using the **tukeywin** function (default shape).
-Output shape is a **blackman** window, size 4001 ms, convolved with a delta train aligned with bins.
-Signals were mean-corrected (zero mean) but *not* normalized using standard deviation.
+Separation is performed using the **tukeywin** function (default shape) of width 2000 ms.
+Output shape is a **tukeywin** window (0.75), size 5001 ms (formerly blackman, for a2).
+This shape is convolved with a delta train centered on each bin.
+Signals were mean-corrected (zero mean) and normalized by dividing standard deviation.
+(Normalization was NOT used for a2.)
 
 
 ## Project Description
