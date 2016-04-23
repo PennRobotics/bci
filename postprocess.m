@@ -31,7 +31,7 @@ sd1   = ones(L, 1) *  std(y1);
 sd2   = ones(L, 1) *  std(y2);
 sd3   = ones(L, 1) *  std(y3);
 
-y1_norm = (y1 - mean1) ./ sd1; % TODO(brwr): High score did not div by stdev!
+y1_norm = (y1 - mean1) ./ sd1;
 y2_norm = (y2 - mean2) ./ sd2;
 y3_norm = (y3 - mean3) ./ sd3;
 
@@ -77,7 +77,7 @@ Q3_peak = round(offset3 : avg_dist3 : length(y3_all));
 
 
 %% SAMPLE AT EACH SAMPLING BI
-WINDOW_SIZE = 2000;   % Window size [ms]
+WINDOW_SIZE = 2100;   % Window size [ms]
 WINDOW_TYPE = 'tukeywin';
 y1_delta = PeakSample(y1_norm, Q1_peak, WINDOW_SIZE, WINDOW_TYPE);
 y2_delta = PeakSample(y2_norm, Q2_peak, WINDOW_SIZE, WINDOW_TYPE);
@@ -92,7 +92,7 @@ y1_hat = zeros(size(y1_delta));
 y2_hat = zeros(size(y2_delta));
 y3_hat = zeros(size(y3_delta));
 
-OutputShape = tukeywin(5001, 0.75);
+OutputShape = tukeywin(5401, 0.80); % Previous 5001, 75
 
 for i = 1:5
   y1_hat(:, i) = conv(y1_delta(:, i), OutputShape, 'same');
@@ -101,15 +101,19 @@ for i = 1:5
 end
 
 
-figure(1); clf reset
-  subplot(2,1,1); findpeaks(analog1,'MinPeakProminence',2); xbound = xlim;
-  subplot(2,1,2); plot(y1_hat); xlim(xbound); grid on; legend 1 2 3 4 5
-figure(2); clf reset
-  subplot(2,1,1); findpeaks(analog2,'MinPeakProminence',2); xbound = xlim;
-  subplot(2,1,2); plot(y2_hat); xlim(xbound); grid on; legend 1 2 3 4 5
-figure(3); clf reset
-  subplot(2,1,1); findpeaks(analog3,'MinPeakProminence',2); xbound = xlim;
-  subplot(2,1,2); plot(y3_hat); xlim(xbound); grid on; legend 1 2 3 4 5
+if 0
+  figure(1); clf reset
+    subplot(2,1,1); findpeaks(analog1,'MinPeakProminence',2); xbound = xlim;
+    subplot(2,1,2); plot(y1_hat); xlim(xbound); grid on; legend 1 2 3 4 5
+  figure(2); clf reset
+    subplot(2,1,1); findpeaks(analog2,'MinPeakProminence',2); xbound = xlim;
+    subplot(2,1,2); plot(y2_hat); xlim(xbound); grid on; legend 1 2 3 4 5
+  figure(3); clf reset
+    subplot(2,1,1); findpeaks(analog3,'MinPeakProminence',2); xbound = xlim;
+    subplot(2,1,2); plot(y3_hat); xlim(xbound); grid on; legend 1 2 3 4 5
+else
+  disp('PLOTS DISABLED!')
+end
 
 predicted_dg{1} = y1_hat;
 predicted_dg{2} = y2_hat;
