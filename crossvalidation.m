@@ -69,14 +69,16 @@ end
 
 % Remove channel 55 from subject 1 dataset
 % TODO(brwr): Make sure this works properly!
-sub_1_train_final(:, 55) = [];
-sub_1_test_final(:, 55) = [];
+% sub_1_train_final(:, 55) = [];
+% sub_1_test_final(:, 55) = [];
 
 %% CROSS-VALIDATION INDEXING
+percentSample = 0.2;
+
 rng(159159);
 
-train_index = 1 : 310000;
-train_xval_index = randsample(train_index, 310000 * 0.2);
+train_index = 1 : length(Train_ECoG_1);
+train_xval_index = randsample(train_index, length(Train_ECoG_1) * percentSample);
 
 sub_1_train_xval = sub_1_train_final(train_xval_index, :);
 sub_1_train_final(train_xval_index, :) = [];
@@ -103,18 +105,21 @@ R2_full = GenerateRMatrix(sub_2_train_final, N);
 disp('3/3')
 R3_full = GenerateRMatrix(sub_3_train_final, N);
 
-R1 = R1_full(1 + N : end - N, :);
-R2 = R2_full(1 + N : end - N, :);
-R3 = R3_full(1 + N : end - N, :);
+% R1 = R1_full(1 + N : end - N, :);
+% R2 = R2_full(1 + N : end - N, :);
+% R3 = R3_full(1 + N : end - N, :);
+R1 = R1_full;
+R2 = R2_full;
+R3 = R3_full;
 
-Y1 = sub1_glove_decimated(1 + N : end - N, :);
-Y2 = sub2_glove_decimated(1 + N : end - N, :);
-Y3 = sub3_glove_decimated(1 + N : end - N, :);
+Y1 = sub1_glove_decimated(N : end, :);
+Y2 = sub2_glove_decimated(N : end, :);
+Y3 = sub3_glove_decimated(N : end, :);
 
 disp('Linear Regression')
-beta1 = (R1' * R1) \ R1' * Y1;
-beta2 = (R2' * R2) \ R2' * Y2;
-beta3 = (R3' * R3) \ R3' * Y3;
+beta1 = (R1' * R1) \ (R1' * Y1);
+beta2 = (R2' * R2) \ (R2' * Y2);
+beta3 = (R3' * R3) \ (R3' * Y3);
 
 %% CROSS-VALIDATION
 disp('1/3  Generating Cross-Validation R Matrices');
@@ -124,9 +129,12 @@ R2_XV = GenerateRMatrix(sub_2_train_xval, N);
 disp('3/3')
 R3_XV = GenerateRMatrix(sub_3_train_xval, N);
 
-XV1 = R1_XV(1 + N : end - N, :); 
-XV2 = R2_XV(1 + N : end - N, :); 
-XV3 = R3_XV(1 + N : end - N, :); 
+% XV1 = R1_XV(1 + N : end - N, :); 
+% XV2 = R2_XV(1 + N : end - N, :); 
+% XV3 = R3_XV(1 + N : end - N, :); 
+XV1 = R1_XV;
+XV2 = R2_XV;
+XV3 = R3_XV;
 
 YV1_hat = XV1 * beta1;
 YV2_hat = XV2 * beta2;
