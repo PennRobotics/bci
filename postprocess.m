@@ -77,7 +77,7 @@ Q3_peak = round(offset3 : avg_dist3 : length(y3_all));
 
 
 %% SAMPLE AT EACH SAMPLING BI
-WINDOW_SIZE = 2100;   % Window size [ms]
+WINDOW_SIZE = 2000;   % Window size [ms]
 WINDOW_TYPE = 'tukeywin';
 y1_delta = PeakSample(y1_norm, Q1_peak, WINDOW_SIZE, WINDOW_TYPE);
 y2_delta = PeakSample(y2_norm, Q2_peak, WINDOW_SIZE, WINDOW_TYPE);
@@ -92,7 +92,7 @@ y1_hat = zeros(size(y1_delta));
 y2_hat = zeros(size(y2_delta));
 y3_hat = zeros(size(y3_delta));
 
-OutputShape = tukeywin(5401, 0.80); % Previous 5001, 75
+OutputShape = tukeywin(5001, 0.75); % Previous 5001, 75
 
 for i = 1:5
   y1_hat(:, i) = conv(y1_delta(:, i), OutputShape, 'same');
