@@ -68,24 +68,22 @@ found in a publication by K. J. Miller et al, "Prediction of Finger Flexion: 4th
 Brain-Computer Interface Data Competition."
 
 ## Potential Solutions
+### Output Signal Generation and Clarification
+- Change number/length/overlap of time-delayed features
 - Difference between neurons (Does **corr(n1, n2)** predict usefulness?)
-- Hysteresis in active finger
-- Low-pass filter
-- Shift several time units
-- Non-spline fit
-- Multiple steps in spline fit
-- Is the target data discretized (integer) or continuous?
-- More/less history in R matrix
-- Nonlinear activation function (hidden layer)
-- Predictive RNN for active finger waveform
-- Hold-and-delay after threshold
-- Remove channel 55
 - New features: line length, energy, power, normalized input
-- Adjust frequency bands and band sizes
 - Identify most influential electrodes in the R matrix. Diff(E1, E2) as new feature.
-- Tiny nudges e.g. x^1.02 or x^0.98
-- Wavelet domain ?
-- ???
+- Adjust frequency bands and band sizes
+- Low-pass filter
+- Non-spline fit
+- Nonlinear activation function (hidden layer)
+- Remove channel 55
+- Predictive RNN for active finger waveform
+### Post-processing
+- Manually place each peak
+- Swap single elements where fingers 3-4-5 are indiscernable to gauge change in correlation
+- Adjust shape of output
+- Weighted mean of generated signal and post-processed signal
 
 ## References
 http://sccn.ucsd.edu/eeglab/
