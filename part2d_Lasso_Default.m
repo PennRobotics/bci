@@ -264,6 +264,7 @@ predicted_dg{2} = YY2;
 predicted_dg{3} = YY3;
 
 disp('Saving axon_fired.mat')
+savenamestring = sprintf('axon_fired_correctedR_No55_Lasso_Alpha_%s.mat', num2str(lasso_alpha_value));
 save('axon_fired_correctedR_No55_Lasso_Default.mat', 'predicted_dg');
 
 disp('Done.')
