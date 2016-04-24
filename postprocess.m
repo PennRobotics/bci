@@ -79,14 +79,14 @@ Q3_peak = round(offset3 : avg_dist3 : length(y3_all));
 %% SAMPLE AT EACH SAMPLING BI
 WINDOW_SIZE = 2000;   % Window size [ms]
 WINDOW_TYPE = 'tukeywin';
-% y1_delta = PeakSample(y1_norm, Q1_peak, WINDOW_SIZE, WINDOW_TYPE);
+y1_delta = PeakSample(y1_norm, Q1_peak, WINDOW_SIZE, WINDOW_TYPE);
 y2_delta = PeakSample(y2_norm, Q2_peak, WINDOW_SIZE, WINDOW_TYPE);
-y3_delta = PeakSample(y3_norm, Q3_peak, WINDOW_SIZE, WINDOW_TYPE);
+% y3_delta = PeakSample(y3_norm, Q3_peak, WINDOW_SIZE, WINDOW_TYPE);
 
 % TODO(brwr): Allow default on pressing ENTER
-disp('SUB1'); y1_delta = PeakSampleManual(y1_norm, Q1_peak, WINDOW_SIZE, WINDOW_TYPE);
+% disp('SUB1'); y1_delta = PeakSampleManual(y1_norm, Q1_peak, WINDOW_SIZE, WINDOW_TYPE);
 % disp('SUB2'); y2_delta = PeakSampleManual(y2_norm, Q2_peak, WINDOW_SIZE, WINDOW_TYPE);
-% disp('SUB3'); y3_delta = PeakSampleManual(y3_norm, Q3_peak, WINDOW_SIZE, WINDOW_TYPE);
+disp('SUB3'); y3_delta = PeakSampleManual(y3_norm, Q3_peak, WINDOW_SIZE, WINDOW_TYPE);
 
 %% GENERATE OUTPUT SIGNAL USING PEAK SAMPLES
 y1_hat = zeros(size(y1_delta));
