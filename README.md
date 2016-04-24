@@ -64,8 +64,10 @@ Signals were mean-corrected (zero mean) and normalized by dividing standard devi
 (Normalization was NOT used for a2.)
 
 Larger bin sizes did not result in incremental improvement.
+
 ### Manual Correction
 A combination of human-supervised visual classification and postprocessing on a revised dataset
+(axon\_fired\_correctedR\_No55\_Lasso\_Alpha\_0\_5.mat)
 resulted in several potential output changes. These changes were implemented one-by-one, and
 correlation was checked after each change and tracked on a master list.
 
