@@ -1,4 +1,4 @@
-# BCI
+# BCI Competition
 Final Project for BE521 - Brain Computer Interfaces - Spring 2016
 
 ```
@@ -7,6 +7,7 @@ Sung Min Ha
 Archana Ramachandran
 Brian Wright
 ```
+
 
 ## Progress
 |    Date    |  Correlation  |  Filename  |
@@ -33,10 +34,12 @@ Brian Wright
 | 2016-04-23 |  **0.4228**   |     a2     |
 | 2016-04-23 |  **0.4374**   |     a3     |
 | 2016-04-23 |    0.3412     |  by hand   |
-| 2016-04-?? |    0.4292     |     a4     |
-| 2016-04-?? |    0.4069     |     a5     |
+| 2016-04-23 |    0.4292     |     a4     |
+| 2016-04-23 |    0.4069     |     a5     |
+| 2016-04-24 |  **0.4410**   | a3 sub1c21 |
 
 *When __af-4-20__ was submitted with the __floor()__ function, score dropped from 0.2912 to 0.2387.*
+
 
 ## Details of Highest Scoring Algorithm
 ### Features
@@ -61,6 +64,10 @@ Signals were mean-corrected (zero mean) and normalized by dividing standard devi
 (Normalization was NOT used for a2.)
 
 Larger bin sizes did not result in incremental improvement.
+### Manual Correction
+A combination of human-supervised visual classification and postprocessing on a revised dataset
+resulted in several potential output changes. These changes were implemented one-by-one, and
+correlation was checked after each change and tracked on a master list.
 
 
 ## Project Description
@@ -69,6 +76,7 @@ when cued by a monitor. The goal of the project is to create a model predicting
 the flexion of a particular digit given transient EEG data. More details can be
 found in a publication by K. J. Miller et al, "Prediction of Finger Flexion: 4th
 Brain-Computer Interface Data Competition."
+
 
 ## Potential Solutions
 ### Output Signal Generation and Clarification
@@ -89,6 +97,7 @@ Brain-Computer Interface Data Competition."
 - Adjust shape of output
 - Identify frequency of glove output and create sinusoids for individual elements
 - Weighted mean of generated signal and post-processed signal
+
 
 ## References
 http://sccn.ucsd.edu/eeglab/
