@@ -39,6 +39,8 @@ Brian Wright
 | 2016-04-24 |  **0.4410**   | a3 sub1c21 |
 | 2016-04-24 |    0.4285     | a3 sub3c12 |
 | 2016-04-24 |    0.4392     | a3 sub3c17 |
+| 2016-04-24 |    0.4317     | a3 sub2c08 |
+| 2016-04-24 |    0.????     | a3 sub2c12 |
 
 *When __af-4-20__ was submitted with the __floor()__ function, score dropped from 0.2912 to 0.2387.*
 
