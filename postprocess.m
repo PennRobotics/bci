@@ -31,9 +31,9 @@ sd1   = ones(L, 1) *  std(y1);
 sd2   = ones(L, 1) *  std(y2);
 sd3   = ones(L, 1) *  std(y3);
 
-y1_norm = (y1 - mean1); % ./ sd1;
-y2_norm = (y2 - mean2); % ./ sd2;
-y3_norm = (y3 - mean3); % ./ sd3;
+y1_norm = (y1 - mean1) ./ sd1;
+y2_norm = (y2 - mean2) ./ sd2;
+y3_norm = (y3 - mean3) ./ sd3;
 
 y1_all = sum(y1_norm, 2);
 y2_all = sum(y2_norm, 2);
@@ -83,9 +83,10 @@ WINDOW_TYPE = 'tukeywin';
 y2_delta = PeakSample(y2_norm, Q2_peak, WINDOW_SIZE, WINDOW_TYPE);
 y3_delta = PeakSample(y3_norm, Q3_peak, WINDOW_SIZE, WINDOW_TYPE);
 
-y1_delta = PeakSampleManual(y1_norm, Q1_peak, WINDOW_SIZE, WINDOW_TYPE);
-% y2_delta = PeakSampleManual(y2_norm, Q2_peak, WINDOW_SIZE, WINDOW_TYPE);
-% y3_delta = PeakSampleManual(y3_norm, Q3_peak, WINDOW_SIZE, WINDOW_TYPE);
+% TODO(brwr): Allow default on pressing ENTER
+disp('SUB1'); y1_delta = PeakSampleManual(y1_norm, Q1_peak, WINDOW_SIZE, WINDOW_TYPE);
+% disp('SUB2'); y2_delta = PeakSampleManual(y2_norm, Q2_peak, WINDOW_SIZE, WINDOW_TYPE);
+% disp('SUB3'); y3_delta = PeakSampleManual(y3_norm, Q3_peak, WINDOW_SIZE, WINDOW_TYPE);
 
 %% GENERATE OUTPUT SIGNAL USING PEAK SAMPLES
 y1_hat = zeros(size(y1_delta));
