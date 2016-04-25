@@ -125,7 +125,7 @@ for i = 1:5
 end
 
 
-if 1
+if 0
   figure(1); clf reset
     subplot(2,1,1); findpeaks(analog1,'MinPeakProminence',2); xbound = xlim;
     subplot(2,1,2); plot(y1_hat); xlim(xbound); grid on; legend 1 2 3 4 5
