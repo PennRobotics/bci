@@ -115,6 +115,10 @@ Brain-Computer Interface Data Competition."
 
 
 ## References
+http://www.madsci.org/posts/archives/2005-05/1117326759.An.r.html
+
+https://www.reddit.com/comments/qzxgf/why\_is\_the\_ring\_finger\_so\_weak\_relative\_to\_the
+
 http://sccn.ucsd.edu/eeglab/
 
 http://martinos.org/mne/stable/
