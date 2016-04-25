@@ -1,4 +1,4 @@
-function [output] = PeakSample(input_y, idx_peak, win_size, WindowFnName)
+function [output] = PeakSample(input_y, idx_peak, A_peak, win_size, WindowFnName)
 
 input_padded = [zeros(win_size, 5); input_y; zeros(win_size, 5)];
 
@@ -14,8 +14,8 @@ output_padded = zeros(size(input_padded)); % Initialize output
 for i = 1 : length(idx_peak)
   finger_strength = sum(Window .* input_padded(idx_start(i) : idx_end(i), :));
   [~, finger_idx] = max(finger_strength);
-  finger_choice(i) = finger_idx;
-  output_padded(idx_peak_shifted(i), finger_choice(i)) = 1;
+  % finger_choice(i) = finger_idx;
+  output_padded(idx_peak_shifted(i), finger_idx) = 0.2 * A_peak(i);
 end
 
 output = output_padded(1 + win_size : end - win_size, :);
