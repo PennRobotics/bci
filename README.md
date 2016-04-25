@@ -46,6 +46,8 @@ Brian Wright
 | 2016-04-24 |    0.3466     | shiftpeaks | 
 | 2016-04-25 |    0.4357     | a3 sub2c17 |
 | 2016-04-25 |    0.????     | a3 sub2c18 |
+| 2016-04-25 |    0.????     | a3 sub2c19 |
+| 2016-04-25 |    0.????     | a3 sub2c21 |
 
 *When __af-4-20__ was submitted with the __floor()__ function, score dropped from 0.2912 to 0.2387.*
 
