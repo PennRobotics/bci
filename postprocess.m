@@ -57,37 +57,60 @@ analog1 = smooth(pk1, 1000); % D2A neural activity (creates peaks)
 analog2 = smooth(pk2, 1000);
 analog3 = smooth(pk3, 1000);
 
-[peaks1, loc1] = findpeaks(analog1, 'MinPeakProminence', 2);  % Find distinct peaks
-[peaks2, loc2] = findpeaks(analog2, 'MinPeakProminence', 2);
-[peaks3, loc3] = findpeaks(analog3, 'MinPeakProminence', 2);
+if 0
+  [peaks1, loc1] = findpeaks(analog1, 'MinPeakProminence', 2);  % Find distinct peaks
+  [peaks2, loc2] = findpeaks(analog2, 'MinPeakProminence', 2);
+  [peaks3, loc3] = findpeaks(analog3, 'MinPeakProminence', 2);
+
+  % MANUAL OVERRIDE OF DETECTED PEAKS
+  loc1( 9) = loc1( 9) + 1000;
+  loc1(16) = loc1(16) +  500;
+  loc1(21) = loc1(21) +  500;
+  loc1(24) = loc1(24) +  500;
+  loc1(25) = loc1(25) -  250;
+  loc1(30) = loc1(30) +  500;
+  loc1(32) = loc1(32) +  500;
+  loc2( 5) = loc2( 5) :  500;
+  loc2     = [  loc2(1:26); 105450;   loc2(27:end)];
+  peaks2   = [peaks2(1:26);      3; peaks2(27:end)];
+  loc3(16) = loc3(16) - 1000;
+  loc3(17) = loc3(17) +  500;
+else
+  %% CREATE SAMPLING BINS
+  avg_dist1 = 4000; % 3999; % avg_dist1 = mean(diff(loc1));
+  avg_dist2 = 4000; % 4020; % avg_dist2 = mean(diff(loc2));
+  avg_dist3 = 4000; % 4041; % avg_dist3 = mean(diff(loc3));
+
+  offset1   = 1275; % 1286; % offset1   = mean(mod(loc1, avg_dist1));
+  offset2   = 1275; %  861; % offset2   = mean(mod(loc2, avg_dist2));
+  offset3   = 1275; % 1722; % offset3   = mean(mod(loc3, avg_dist3));
+
+  loc1 = round(offset1 : avg_dist1 : length(y1_all)); % Index of all expected peaks
+  loc2 = round(offset2 : avg_dist2 : length(y2_all));
+  loc3 = round(offset3 : avg_dist3 : length(y3_all));
+
+  peaks1 = 5 * ones(1, 37);
+  peaks2 = 5 * ones(1, 37);
+  peaks3 = 5 * ones(1, 37);
+end
 
 
-%% CREATE SAMPLING BINS
-avg_dist1 = 4000; % mean(diff(loc1));  % Average distance between peaks
-avg_dist2 = 4000; % mean(diff(loc2));
-avg_dist3 = 4000; % mean(diff(loc3));
-
-offset1   = 1275; % mean(mod(loc1, avg_dist1));  % Index offset from beginning of time
-offset2   = 1275; % mean(mod(loc2, avg_dist2));
-offset3   = 1275; % mean(mod(loc3, avg_dist3));
-
-Q1_peak = round(offset1 : avg_dist1 : length(y1_all)); % Index of all expected peaks
-Q2_peak = round(offset2 : avg_dist2 : length(y2_all));
-Q3_peak = round(offset3 : avg_dist3 : length(y3_all));
-
-
-%% SAMPLE AT EACH SAMPLING BI
+%% SAMPLE AT EACH SAMPLING BIN
 WINDOW_SIZE = 2000;   % Window size [ms]
 WINDOW_TYPE = 'tukeywin';
-y1_delta = PeakSample(y1_norm, Q1_peak, WINDOW_SIZE, WINDOW_TYPE);
-% y2_delta = PeakSample(y2_norm, Q2_peak, WINDOW_SIZE, WINDOW_TYPE);
-y3_delta = PeakSample(y3_norm, Q3_peak, WINDOW_SIZE, WINDOW_TYPE);
+y1_delta = PeakSample(y1_norm, loc1, peaks1, WINDOW_SIZE, WINDOW_TYPE);
+y2_delta = PeakSample(y2_norm, loc2, peaks2, WINDOW_SIZE, WINDOW_TYPE);
+y3_delta = PeakSample(y3_norm, loc3, peaks3, WINDOW_SIZE, WINDOW_TYPE);
 
+
+%% MANUAL OVERRIDE OF INDIVIDUAL PEAKS   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TODO(brwr): Allow default on pressing ENTER
-% disp('SUB1'); y1_delta = PeakSampleManual(y1_norm, Q1_peak, WINDOW_SIZE, WINDOW_TYPE);
-disp('SUB2'); y2_delta = PeakSampleManual(y2_norm, Q2_peak, WINDOW_SIZE, WINDOW_TYPE);
-% disp('SUB3'); y3_delta = PeakSampleManual(y3_norm, Q3_peak, WINDOW_SIZE, WINDOW_TYPE);
+% disp('SUB1'); y1_delta = PeakSampleManual(y1_norm, loc1, WINDOW_SIZE, WINDOW_TYPE);
+disp('SUB2'); y2_delta = PeakSampleManual(y2_norm, loc2, WINDOW_SIZE, WINDOW_TYPE);
+% disp('SUB3'); y3_delta = PeakSampleManual(y3_norm, loc3, WINDOW_SIZE, WINDOW_TYPE);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+ 
 %% GENERATE OUTPUT SIGNAL USING PEAK SAMPLES
 y1_hat = zeros(size(y1_delta));
 y2_hat = zeros(size(y2_delta));
@@ -102,7 +125,7 @@ for i = 1:5
 end
 
 
-if 0
+if 1
   figure(1); clf reset
     subplot(2,1,1); findpeaks(analog1,'MinPeakProminence',2); xbound = xlim;
     subplot(2,1,2); plot(y1_hat); xlim(xbound); grid on; legend 1 2 3 4 5
