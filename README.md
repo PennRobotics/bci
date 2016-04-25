@@ -61,22 +61,21 @@ Brian Wright
 - (Glove reduced using MovingAverageAdj)
 
 ### Implementation
-Trimmed N from beginning and from end
-Appended N to beginning and to end
-Linear Regression to solve Yhat
-**PCHIP** upsampling: stretch Yhat to correct length using indexing (not **linspace**)
-Signals were smoothed with a moving average---window size of 101 ms.
+- Trimmed N from beginning and from end (*TODO* Make sure this is correct!)
+- Appended N to beginning and to end
+- Linear Regression to solve Yhat
+- **PCHIP** upsampling: stretch Yhat to correct length using indexing (not **linspace**)
+- Signals were smoothed with a moving average---window size of 101 ms.
 
 ### Post-Processing
-Noisy output signal is separated into bins with strongest signal determining the active finger.
-Bins are constructed with 1275 ms offset and 4000 ms peak-to-peak distance.
-Separation is performed using the **tukeywin** function (default shape) of width 2000 ms.
-Output shape is a **tukeywin** window (0.75), size 5001 ms (formerly blackman, for a2).
-This shape is convolved with a delta train centered on each bin.
-Signals were mean-corrected (zero mean) and normalized by dividing standard deviation.
-(Normalization was NOT used for a2.)
-
-Larger bin sizes did not result in incremental improvement.
+- Noisy output signal is separated into bins with strongest signal determining the active finger.
+- Bins are constructed with 1275 ms offset and 4000 ms peak-to-peak distance.
+- Separation is performed using the **tukeywin** function (default shape) of width 2000 ms.
+- Output shape is a **tukeywin** window (0.75), size 5001 ms (formerly blackman, for a2).
+- This shape is convolved with a delta train centered on each bin.
+- Signals were mean-corrected (zero mean) and normalized by dividing standard deviation.
+- (Normalization was NOT used for a2.)
+- Larger bin sizes did not result in incremental improvement.
 
 ### Manual Correction
 A combination of human-supervised visual classification and postprocessing on a revised dataset
