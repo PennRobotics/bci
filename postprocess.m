@@ -83,7 +83,6 @@ else
 
   offset1   = 1275; % 1286; % offset1   = mean(mod(loc1, avg_dist1));
   offset2   = 1275; %  861; % offset2   = mean(mod(loc2, avg_dist2));
-  offset2   = 1075;
   offset3   = 1275; % 1722; % offset3   = mean(mod(loc3, avg_dist3));
 
   loc1 = round(offset1 : avg_dist1 : length(y1_all)); % Index of all expected peaks
