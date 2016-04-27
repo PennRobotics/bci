@@ -7,15 +7,15 @@ y2 = predicted_dg{2};
 y3 = predicted_dg{3};
 
 if 0
-  load subject1
+  load subject1/subject1
   y1 = Train_Glove_1;
   clear T*
 
-  load subject2
+  load subject2/subject2
   y2 = Train_Glove_2;
   clear T*
 
-  load subject3
+  load subject3/subject3
   y3 = Train_Glove_3;
   clear T*
 end
@@ -116,6 +116,7 @@ y1_hat = zeros(size(y1_delta));
 y2_hat = zeros(size(y2_delta));
 y3_hat = zeros(size(y3_delta));
 
+disp('OUTPUT SHAPE needs fixing! Somewhere around line 120')
 OutputShape = sum(reshape(glove1(:, 1), 4000, 77), 2); % TODO(brwr): Implement for each finger
 % TODO(brwr): The line above needs to be centered properly!
 OutputShape = tukeywin(5001, 0.75); % Previous 5001, 75
@@ -147,7 +148,7 @@ predicted_dg{3} = y3_hat;
 
 if 0
   inputstr = input('Save filename? ', 's');
-  save(inputstr,'predicted_dg')
+  save(inputstr, 'predicted_dg')
   disp(['Saved to ' inputstr])
 else
   disp('MATFILE WAS NOT SAVED!')
