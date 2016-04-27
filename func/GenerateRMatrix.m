@@ -1,5 +1,5 @@
 function R = GenerateRMatrix(input, N);
-M = size(input, 1)-N +1;
+M = size(input, 1) - N +1;
 v = size(input, 2);
 
 %R-matrix
