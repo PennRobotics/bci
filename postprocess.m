@@ -116,6 +116,8 @@ y1_hat = zeros(size(y1_delta));
 y2_hat = zeros(size(y2_delta));
 y3_hat = zeros(size(y3_delta));
 
+OutputShape = sum(reshape(glove1(:, 1), 4000, 77), 2); % TODO(brwr): Implement for each finger
+% TODO(brwr): The line above needs to be centered properly!
 OutputShape = tukeywin(5001, 0.75); % Previous 5001, 75
 
 for i = 1:5
