@@ -1,4 +1,6 @@
 %% IMPORT GLOVE PREDICTIONS
+addpath(genpath('./func'));
+
 clear all
 load axon_fired_Smooth
 
@@ -106,7 +108,7 @@ y3_delta = PeakSample(y3_norm, loc3, peaks3, WINDOW_SIZE, WINDOW_TYPE);
 %% MANUAL OVERRIDE OF INDIVIDUAL PEAKS   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TODO(brwr): Allow default on pressing ENTER
 % disp('SUB1'); y1_delta = PeakSampleManual(y1_norm, loc1, WINDOW_SIZE, WINDOW_TYPE);
-disp('SUB2'); y2_delta = PeakSampleManual(y2_norm, loc2, WINDOW_SIZE, WINDOW_TYPE);
+% disp('SUB2'); y2_delta = PeakSampleManual(y2_norm, loc2, WINDOW_SIZE, WINDOW_TYPE);
 % disp('SUB3'); y3_delta = PeakSampleManual(y3_norm, loc3, WINDOW_SIZE, WINDOW_TYPE);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -117,14 +119,46 @@ y2_hat = zeros(size(y2_delta));
 y3_hat = zeros(size(y3_delta));
 
 disp('OUTPUT SHAPE needs fixing! Somewhere around line 120')
-OutputShape = sum(reshape(glove1(:, 1), 4000, 77), 2); % TODO(brwr): Implement for each finger
+% OutputShape = sum(reshape(glove1(:, 1), 4000, 77), 2); % TODO(brwr): Implement for each finger
 % TODO(brwr): The line above needs to be centered properly!
-OutputShape = tukeywin(5001, 0.75); % Previous 5001, 75
+
+
+load filtered_glove_data
+
+glove1(104000:105999, :) = [];
+glove2(104000:105999, :) = [];
+glove3(104000:105999, :) = [];
+
+S1F1 = sum(reshape(glove1(:, 1), 4000, 77), 2);
+S1F2 = sum(reshape(glove1(:, 2), 4000, 77), 2);
+S1F3 = sum(reshape(glove1(:, 3), 4000, 77), 2);
+S1F4 = sum(reshape(glove1(:, 4), 4000, 77), 2);
+S1F5 = sum(reshape(glove1(:, 5), 4000, 77), 2);
+
+S2F1 = sum(reshape(glove2(:, 1), 4000, 77), 2);
+S2F2 = sum(reshape(glove2(:, 2), 4000, 77), 2);
+S2F3 = sum(reshape(glove2(:, 3), 4000, 77), 2);
+S2F4 = sum(reshape(glove2(:, 4), 4000, 77), 2);
+S2F5 = sum(reshape(glove2(:, 5), 4000, 77), 2);
+
+S3F1 = sum(reshape(glove3(:, 1), 4000, 77), 2);
+S3F2 = sum(reshape(glove3(:, 2), 4000, 77), 2);
+S3F3 = sum(reshape(glove3(:, 3), 4000, 77), 2);
+S3F4 = sum(reshape(glove3(:, 4), 4000, 77), 2);
+S3F5 = sum(reshape(glove3(:, 5), 4000, 77), 2);
+
+S1Favg = S1F1 + S1F2 + S1F3 + S1F4 + S1F5;
+S2Favg = S2F1 + S2F2 + S2F3 + S2F4 + S2F5;
+S3Favg = S3F1 + S3F2 + S3F3 + S3F4 + S3F5;
+
+OutputShape1 = S1Favg; % tukeywin(5001, 0.75); % Previous 5001, 75
+OutputShape2 = S2Favg; % tukeywin(5001, 0.75); % Previous 5001, 75
+OutputShape3 = S3Favg; % tukeywin(5001, 0.75); % Previous 5001, 75
 
 for i = 1:5
-  y1_hat(:, i) = conv(y1_delta(:, i), OutputShape, 'same');
-  y2_hat(:, i) = conv(y2_delta(:, i), OutputShape, 'same');
-  y3_hat(:, i) = conv(y3_delta(:, i), OutputShape, 'same');
+  y1_hat(:, i) = conv(y1_delta(:, i), OutputShape1, 'same');
+  y2_hat(:, i) = conv(y2_delta(:, i), OutputShape2, 'same');
+  y3_hat(:, i) = conv(y3_delta(:, i), OutputShape3, 'same');
 end
 
 
