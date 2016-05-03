@@ -33,9 +33,9 @@ sd1   = ones(L, 1) *  std(y1);
 sd2   = ones(L, 1) *  std(y2);
 sd3   = ones(L, 1) *  std(y3);
 
-y1_norm = (y1 - mean1) ./ sd1;
-y2_norm = (y2 - mean2) ./ sd2;
-y3_norm = (y3 - mean3) ./ sd3;
+y1_norm = (y1 - mean1) .* (1 + sd1) ./ (2 * sd1);
+y2_norm = (y2 - mean2) .* (1 + sd2) ./ (2 * sd2);
+y3_norm = (y3 - mean3) .* (1 + sd3) ./ (2 * sd3);
 
 y1_all = sum(y1_norm, 2);
 y2_all = sum(y2_norm, 2);

@@ -36,36 +36,38 @@ if subject3
   session_3_test = IEEGSession('I521_A0014_D003', username, password_bin);
 end
 
-nr_1_train   = session_1_train.data.rawChannels(1).getNrSamples + 1;
-nr_1_glove   = session_1_glove.data.rawChannels(1).getNrSamples + 1;
-nr_1_test    = session_1_test .data.rawChannels(1).getNrSamples + 1;
-nc_1_train   = length(session_1_train.data.rawChannels);
-nc_1_glove   = length(session_1_glove.data.rawChannels);
-nc_1_test    = length(session_1_test .data.rawChannels);
-data_1_train = session_1_train.data.getvalues(1 : nr_1_train, 1 : nc_1_train);
-data_1_glove = session_1_glove.data.getvalues(1 : nr_1_glove, 1 : nc_1_glove);
-data_1_test  = session_1_test .data.getvalues(1 : nr_1_test , 1 : nc_1_test );
+nr_1_train    = session_1_train.data.rawChannels(1).getNrSamples + 1;
+nr_1_glove    = session_1_glove.data.rawChannels(1).getNrSamples + 1;
+nr_1_test     = session_1_test .data.rawChannels(1).getNrSamples + 1;
+nc_1_train    = length(session_1_train.data.rawChannels);
+nc_1_glove    = length(session_1_glove.data.rawChannels);
+nc_1_test     = length(session_1_test .data.rawChannels);
+Train_ECoG_1  = session_1_train.data.getvalues(1 : nr_1_train, 1 : nc_1_train);
+Train_Glove_1 = session_1_glove.data.getvalues(1 : nr_1_glove, 1 : nc_1_glove);
+Test_ECoG_1   = session_1_test .data.getvalues(1 : nr_1_test , 1 : nc_1_test );
 
-nr_2_train   = session_2_train.data.rawChannels(1).getNrSamples + 1;
-nr_2_glove   = session_2_glove.data.rawChannels(1).getNrSamples + 1;
-nr_2_test    = session_2_test .data.rawChannels(1).getNrSamples + 1;
-nc_2_train   = length(session_2_train.data.rawChannels);
-nc_2_glove   = length(session_2_glove.data.rawChannels);
-nc_2_test    = length(session_2_test .data.rawChannels);
-data_2_train = session_2_train.data.getvalues(1 : nr_2_train, 1 : nc_2_train);
-data_2_glove = session_2_glove.data.getvalues(1 : nr_2_glove, 1 : nc_2_glove);
-data_2_test  = session_2_test .data.getvalues(1 : nr_2_test , 1 : nc_2_test );
+nr_2_train    = session_2_train.data.rawChannels(1).getNrSamples + 1;
+nr_2_glove    = session_2_glove.data.rawChannels(1).getNrSamples + 1;
+nr_2_test     = session_2_test .data.rawChannels(1).getNrSamples + 1;
+nc_2_train    = length(session_2_train.data.rawChannels);
+nc_2_glove    = length(session_2_glove.data.rawChannels);
+nc_2_test     = length(session_2_test .data.rawChannels);
+Train_ECoG_2  = session_2_train.data.getvalues(1 : nr_2_train, 1 : nc_2_train);
+Train_Glove_2 = session_2_glove.data.getvalues(1 : nr_2_glove, 1 : nc_2_glove);
+Test_ECoG_2   = session_2_test .data.getvalues(1 : nr_2_test , 1 : nc_2_test );
 
-nr_3_train   = session_3_train.data.rawChannels(1).getNrSamples + 1;
-nr_3_glove   = session_3_glove.data.rawChannels(1).getNrSamples + 1;
-nr_3_test    = session_3_test .data.rawChannels(1).getNrSamples + 1;
-nc_3_train   = length(session_3_train.data.rawChannels);
-nc_3_glove   = length(session_3_glove.data.rawChannels);
-nc_3_test    = length(session_3_test .data.rawChannels);
-data_3_train = session_3_train.data.getvalues(1 : nr_3_train, 1 : nc_3_train);
-data_3_glove = session_3_glove.data.getvalues(1 : nr_3_glove, 1 : nc_3_glove);
-data_3_test  = session_3_test .data.getvalues(1 : nr_3_test , 1 : nc_3_test );
+nr_3_train    = session_3_train.data.rawChannels(1).getNrSamples + 1;
+nr_3_glove    = session_3_glove.data.rawChannels(1).getNrSamples + 1;
+nr_3_test     = session_3_test .data.rawChannels(1).getNrSamples + 1;
+nc_3_train    = length(session_3_train.data.rawChannels);
+nc_3_glove    = length(session_3_glove.data.rawChannels);
+nc_3_test     = length(session_3_test .data.rawChannels);
+Train_ECoG_3  = session_3_train.data.getvalues(1 : nr_3_train, 1 : nc_3_train);
+Train_Glove_3 = session_3_glove.data.getvalues(1 : nr_3_glove, 1 : nc_3_glove);
+Test_ECoG_3   = session_3_test .data.getvalues(1 : nr_3_test , 1 : nc_3_test );
 
-return
+save('subject1.mat', 'Train_ECoG_1', 'Train_Glove_1', 'Test_ECoG_1');
+save('subject2.mat', 'Train_ECoG_2', 'Train_Glove_2', 'Test_ECoG_2');
+save('subject3.mat', 'Train_ECoG_3', 'Train_Glove_3', 'Test_ECoG_3');
 
-clear session* subject* nr* nc* username password_bin
+clear all
