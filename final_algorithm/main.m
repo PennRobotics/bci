@@ -24,7 +24,7 @@ calculate_r_matrix;
 generate_analog_output;
 predict_finger_for_each_trial;
 convert_analog_output_to_digital_output_pulses;
-create_output_shape_per_finger;
+create_output_shapes_for_each_finger;
 place_shape_at_each_pulse;
 save_to_file;
 

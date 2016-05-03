@@ -22,8 +22,8 @@ predicted_dg{1} = YY1;
 predicted_dg{2} = YY2;
 predicted_dg{3} = YY3;
 
-disp('Saving axon_fired.mat')
-save('axon_fired.mat', 'predicted_dg');
+disp('Saving final_axon_fired.mat')
+save('final_axon_fired.mat', 'predicted_dg');
 
 disp('Done.')
 disp(' ')
