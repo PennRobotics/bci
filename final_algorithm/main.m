@@ -18,7 +18,7 @@ clear all; clc;
 
 
 % TODO(brwr): Double check ieeg code
-get_raw_data_from_ieeg;
+% get_raw_data_from_ieeg;
 process_raw_data;
 calculate_r_matrix;
 generate_analog_output;
