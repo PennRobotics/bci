@@ -55,6 +55,7 @@ sub_2_test_final = [sub_2_test_MA , sub_2_test_FD];
 sub_3_train_final = [sub_3_train_MA , sub_3_train_FD];
 sub_3_test_final = [sub_3_test_MA , sub_3_test_FD];
 
+%% CALCULATE R MATRIX
 disp('1/3  Generating Training R Matrices')
 R1_full = FnGenerateRMatrix(sub_1_train_final, N);
 disp('2/3')
@@ -86,6 +87,8 @@ X1 = R1_X;
 X2 = R2_X; 
 X3 = R3_X; 
 
+%% GENERATE OUTPUT
+disp('Generate Output')
 Y1_hat = X1 * beta1;
 Y2_hat = X2 * beta2;
 Y3_hat = X3 * beta3;
