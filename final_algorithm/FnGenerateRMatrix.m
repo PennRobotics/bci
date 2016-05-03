@@ -12,5 +12,5 @@ for i = 1 : M
     ij = ij + 1;
 end
 R(:, 2 : end) = r;    %Response matrixend
-fprintf('(GenerateRMatrix) Mean in Gen Function = %f\n', mean(mean(R)));
+fprintf('     (GenerateRMatrix) Mean in Gen Function = %f\n', mean(mean(R)));
 end
