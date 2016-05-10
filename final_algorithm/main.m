@@ -1,32 +1,29 @@
-disp('Make sure to grep -Hrn "TODO" before submitting to Canvas!') % TODO(brwr)
-
 %% BE521 FINAL PROJECT
 %  
 %  Brain Computer Interface (BCI) Competition - Spring 2016
 %  University of Pennsylvania
 %  
-%  - Prof. Brian Litt
+%  - Prof. Brian Litt, MD
 %  - Sung Min Ha
 %  - Archana Ramachandran
 %  - Brian Wright
 %  
- 
-disp('Axon, You''re FIRED!')
-disp(' ')
+%  All code, data, and history is in a private repository:
+%  http://www.github.com/usfbrian/bci
 
 clear all; clc;
 
-
-% TODO(brwr): Double check ieeg code
-% get_raw_data_from_ieeg;
+disp(' '); disp('Axon, You''re FIRED!')
+disp(' ')
+get_raw_data_from_ieeg;
 process_raw_data;
 calculate_r_matrix;
 generate_analog_output;
-predict_finger_for_each_trial;
+prepare_analog_output_for_peak_detection;
 convert_analog_output_to_digital_output_pulses;
 create_output_shapes_for_each_finger;
 place_shape_at_each_pulse;
+show_results;
 save_to_file;
-
-%TODO(brwr): submission mfile
-
+disp('----------------------')
+disp('No Errors Running Code')
